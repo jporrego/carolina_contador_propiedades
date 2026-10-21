@@ -6,8 +6,9 @@ import SiteHeader from '../components/SiteHeader.astro';
 interface Props {
   title?: string;
   description?: string;
+  noindex?: boolean;
 }
-const { title = site.title, description = site.description } = Astro.props;
+const { title = site.title, description = site.description, noindex = false } = Astro.props;
 ---
 <!doctype html>
 <html lang={site.language}>
@@ -15,6 +16,7 @@ const { title = site.title, description = site.description } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
     <meta name="theme-color" content="#f6f3ee" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>

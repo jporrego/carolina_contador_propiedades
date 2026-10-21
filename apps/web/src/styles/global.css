@@ -136,3 +136,56 @@ h3 { font-size: 1.5rem; line-height: 1.25; letter-spacing: -.03em; font-weight: 
   .service-item h3 { max-width: none; }
   nav { justify-content: flex-start; column-gap: 1.2rem; font-size: .75rem; }
 }
+
+/* Property catalogue and detail pages */
+.featured, .catalog, .property-detail, .related { padding-block: clamp(3rem, 6vw, 6rem); }
+.featured-heading { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-bottom: 2rem; }
+.featured > .sample-notice, .catalog > .sample-notice { margin-block: 2rem; }
+.property-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; }
+.featured .property-grid, .related .property-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.property-card-link { display: block; text-decoration: none; }
+.property-card-image { position: relative; overflow: hidden; border-radius: var(--radius); }
+.property-card-image img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+.property-badge { position: absolute; left: .8rem; top: .8rem; border-radius: 2rem; padding: .35rem .7rem; font-size: .65rem; background: var(--color-background); }
+.property-card-heading { display: flex; align-items: baseline; gap: 1rem; justify-content: space-between; margin-top: 1rem; }
+.property-card-heading h3 { font-size: 1.3rem; margin: 0; }
+.property-card-link:hover h3 { text-decoration: underline; text-underline-offset: .2em; }
+.property-location { color: var(--color-muted); font-size: .8rem; }
+.property-specs { font-size: .8rem; padding-block: .7rem; border-bottom: 1px solid var(--color-border); }
+.property-specs span { margin-inline: .4rem; }
+.property-price { font-size: 1.1rem; display: flex; align-items: baseline; flex-wrap: wrap; gap: .4rem 1rem; }
+.property-price span { font-size: .65rem; color: var(--color-muted); }
+.catalog h1 { font-size: clamp(3rem, 6vw, 5.5rem); }
+.breadcrumbs { justify-content: flex-start; flex-wrap: wrap; gap: .7rem; margin-bottom: 2rem; color: var(--color-muted); }
+.breadcrumbs a:last-of-type { border: 0; }
+.property-detail h1 { max-width: 65rem; font-size: clamp(2.5rem, 5vw, 5rem); }
+.detail-photo { margin: 2rem 0; }
+.detail-photo img { width: 100%; max-height: 38rem; object-fit: cover; border-radius: var(--radius); }
+.detail-grid { display: grid; grid-template-columns: 1.7fr 1fr; gap: 4rem; align-items: start; }
+.property-facts { display: grid; grid-template-columns: repeat(3, 1fr); border-block: 1px solid var(--color-border); padding-block: 1.2rem; gap: 1rem; margin: 0 0 2.5rem; }
+.property-facts dt { font-size: .75rem; color: var(--color-muted); }
+.property-facts dd { margin: .3rem 0 0; font-size: 1.6rem; }
+.detail-grid h2, .related h2 { font-size: clamp(1.7rem, 3vw, 2.5rem); }
+.detail-description { color: var(--color-muted); max-width: 40rem; }
+.property-features { margin-top: 2rem; }
+.property-features ul { padding-left: 1.2rem; color: var(--color-muted); columns: 2; }
+.property-features li { padding-block: .4rem; break-inside: avoid; }
+.property-inquiry { background: #eae4db; padding: 2rem; border-radius: var(--radius); }
+.detail-price { font-size: 2.5rem; margin: .5rem 0; letter-spacing: -.04em; }
+.property-inquiry > p:not(.detail-price) { font-size: .85rem; }
+.property-inquiry .button { margin-top: 1rem; }
+.related { border-top: 1px solid var(--color-border); }
+.related .property-grid { margin-top: 2rem; }
+@media (max-width: 1000px) { .site-header { flex-wrap: wrap; } nav { flex-wrap: wrap; } }
+@media (max-width: 900px) {
+  .property-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .detail-grid { grid-template-columns: 1fr; gap: 2rem; }
+}
+@media (max-width: 600px) {
+  .property-grid, .featured .property-grid, .related .property-grid { grid-template-columns: 1fr; }
+  .featured-heading { align-items: start; flex-direction: column; gap: 1rem; }
+  .property-features ul { columns: 1; }
+  .property-inquiry { padding: 1.5rem; }
+  .property-facts dt { font-size: .65rem; }
+  .property-facts dd { font-size: 1.3rem; }
+}

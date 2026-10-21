@@ -31,3 +31,6 @@ The static build output is apps/web/dist. No server adapter is required.
 
 ## Contact configuration
 Edit apps/web/src/config/contact.ts. Replace the sample phone and email, use international digits only for whatsappNumber (no + or spaces), and set isPlaceholder to false to activate links.
+
+## Sample listings
+Typed sample data lives in apps/web/src/data/properties.ts. The catalogue and all detail routes are generated statically and marked noindex while they contain examples. Replace the fixtures with Sanity in step 6 before enabling indexing. No exact addresses or real availability are asserted.

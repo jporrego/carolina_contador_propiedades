@@ -23,3 +23,4 @@ Work one step at a time; do not implement later stages without the user's reques
 - Step 1: project foundation.
 - Step 2: responsive navigation, optimized illustrative hero photo, owner-focused CTA and Carolina introduction. Contact details and portrait remain pending.
 - Step 3: owner services, four-step selling process, contact section and expanded navigation. Sample contact details remain non-interactive.
+- Step 4: three fictional listings, catalogue, static detail pages, related properties and homepage featured section. Example catalogue/detail pages are noindex; no real availability is implied.

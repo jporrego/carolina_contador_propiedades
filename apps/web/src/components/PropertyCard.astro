@@ -1,0 +1,18 @@
+---
+import { Image } from 'astro:assets';
+import { formatPrice, type Property } from '../data/properties';
+interface Props { property: Property; }
+const { property } = Astro.props;
+---
+<article class="property-card">
+  <a href={'/propiedades/' + property.slug + '/'} class="property-card-link">
+    <div class="property-card-image">
+      <Image src={property.image} alt={property.imageAlt} widths={[400, 640, 960]} sizes="(max-width: 600px) 90vw, (max-width: 900px) 45vw, 30vw" width={960} format="webp" loading="lazy" />
+      <span class="property-badge">{property.type}</span>
+    </div>
+    <div class="property-card-heading"><h3>{property.title}</h3><span aria-hidden="true">↗</span></div>
+    <p class="property-location">{property.location}</p>
+    <p class="property-specs">{property.bedrooms} dorm. <span>·</span> {property.bathrooms} baños <span>·</span> {property.areaM2} m² interiores</p>
+    <p class="property-price">{formatPrice(property.priceUf)} </p>
+  </a>
+</article>

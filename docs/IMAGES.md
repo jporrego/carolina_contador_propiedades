@@ -6,3 +6,6 @@
   Astro generates responsive WebP derivatives at build time.
 - No stock portrait is used to represent Carolina.
 
+
+- house.jpg: https://images.unsplash.com/photo-1600596542815-ffad4c1539a9 (illustrative stock image).
+- apartment.jpg: https://images.unsplash.com/photo-1600607687920-4e2a09cf159d (illustrative stock image).
