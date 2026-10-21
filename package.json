@@ -12,6 +12,7 @@
     "check": "pnpm --filter @carolina/web check",
     "studio": "pnpm --filter @carolina/studio dev",
     "studio:build": "pnpm --filter @carolina/studio build",
-    "studio:check": "pnpm --filter @carolina/studio check"
+    "studio:check": "pnpm --filter @carolina/studio check",
+    "studio:deploy": "pnpm --filter @carolina/studio run deploy"
   }
 }

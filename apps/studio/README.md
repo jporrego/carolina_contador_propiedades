@@ -31,3 +31,17 @@ No API token is needed in the browser. Never put private API tokens in SANITY_ST
 The editor is connected locally to project vzzp5544, dataset production. A first published listing is still needed for a full upload-to-website verification.
 The website now reads published Sanity content. Rebuild after publishing; deployment hooks will be configured in step 7.
 Public example labels have been removed for design review; fixture status stays documented here, and property pages remain noindex until launch.
+
+## Hosted CMS
+
+Open https://carolina-contador.sanity.studio/ from any device. This may redirect into Sanity's dashboard.
+Accept the project invitation before signing in as a new member. Sign in with the same provider used when accepting the invitation.
+The project owner account was registered with GitHub; a Google sign-in using the same email is a separate Sanity identity.
+
+To deploy changes to Studio from the repository root:
+
+    pnpm studio:deploy
+
+This is separate from the public website's Cloudflare deployment. Changing listing content only needs publishing, not redeploying Studio.
+The deployment app ID is stored in sanity.cli.ts to reuse the same Studio on future deploys.
+An Editor can manage and publish content. The project currently uses a Growth trial; review role availability before moving to Free.

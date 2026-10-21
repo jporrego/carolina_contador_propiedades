@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "sanity dev",
     "build": "sanity build",
-    "check": "tsc --noEmit"
+    "check": "tsc --noEmit",
+    "deploy": "sanity deploy --url carolina-contador --yes"
   },
   "dependencies": {
     "react": "^19.3.1",

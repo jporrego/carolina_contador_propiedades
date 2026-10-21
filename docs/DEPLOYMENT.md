@@ -35,3 +35,4 @@ Sanity webhook: Cloudflare Pages — Carolina; enabled for production, published
 Verified live homepage, catalogue, property carousel/expanded viewer, sitemap, robots, canonical/noindex and HTTP 404. Sanity delivery on a subsequent publish remains to be observed.
 colormural.cl was not modified.
 
+Hosted CMS: https://carolina-contador.sanity.studio/ . Sanity app ID eqeg3rrwpvpqfo4a1hz16ymg. Hosted workspace verified; Editor invitation sent. Studio deployments use pnpm studio:deploy.
