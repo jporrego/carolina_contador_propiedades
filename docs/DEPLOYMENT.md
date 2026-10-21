@@ -27,3 +27,11 @@ Create a Pages deploy hook for main. In Sanity project API > Webhooks, add its U
 
 The hook URL authorizes triggering builds. Store it in Sanity, not this repository.
 Publishing or unpublishing requires a successful new deployment to update the static website.
+
+## Deployment verified
+Live URL: https://carolina-contador-propiedades.pages.dev
+Cloudflare project: carolina-contador-propiedades. Git pushes to main deploy automatically.
+Sanity webhook: Cloudflare Pages — Carolina; enabled for production, published property/homepage creates, updates and deletes. Drafts and versions disabled. Hook URL is stored only in provider settings.
+Verified live homepage, catalogue, property carousel/expanded viewer, sitemap, robots, canonical/noindex and HTTP 404. Sanity delivery on a subsequent publish remains to be observed.
+colormural.cl was not modified.
+
