@@ -1,25 +1,15 @@
 ---
 const services = [
-  { number: '01', title: 'Una presentación que destaque', text: 'Cuidamos las fotografías, la descripción y los detalles para mostrar lo que hace especial a tu propiedad.' },
-  { number: '02', title: 'Difusión con un propósito', text: 'Definimos cómo presentar tu propiedad y acercarla a personas que estén buscando un lugar como el tuyo.' },
-  { number: '03', title: 'Acompañamiento en cada etapa', text: 'Coordinamos las visitas, conversamos sobre las consultas recibidas y revisamos juntos los siguientes pasos.' },
+  { title: 'Presentación', text: 'Fotografías y descripciones que muestran lo mejor de tu propiedad.' },
+  { title: 'Difusión', text: 'Publicación, atención de consultas y coordinación de visitas.' },
+  { title: 'Acompañamiento', text: 'Seguimiento de propuestas y apoyo hasta el cierre de la venta.' },
 ];
 ---
 <section class="services container" id="propietarios" aria-labelledby="services-title">
-  <div class="section-heading">
-    <p class="eyebrow">02 / Para propietarios</p>
-    <div>
-      <h2 id="services-title">Tu propiedad merece<br /><span>una atención especial.</span></h2>
-      <p class="section-description">Desde la primera conversación hasta la decisión de venta, una gestión cercana y una presentación cuidada.</p>
-    </div>
-  </div>
+  <h2 class="section-label" id="services-title">Servicios para propietarios</h2>
   <div class="service-grid">
-    {services.map((service) => (
-      <article class="service-item">
-        <span class="service-number" aria-hidden="true">{service.number}</span>
-        <h3>{service.title}</h3>
-        <p>{service.text}</p>
-      </article>
-    ))}
+    {services.map((service) => <article class="service-item">
+      <h3>{service.title}</h3><p>{service.text}</p>
+    </article>)}
   </div>
 </section>

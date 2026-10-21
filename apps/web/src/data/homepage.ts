@@ -3,10 +3,10 @@ import { querySanity } from '../lib/sanity';
 const defaults = {
   heroLine1: 'Tu propiedad,',
   heroLine2: 'en buenas manos.',
-  heroDescription: 'Vender es una gran decisión. Demos el siguiente paso juntos.',
-  aboutTitle: 'Detrás de cada propiedad, hay una historia. Me gustaría conocer la tuya.',
-  aboutParagraph1: 'Soy Carolina Contador Cortes. Quiero acompañarte en una decisión importante: vender tu propiedad y abrir la puerta a lo que viene.',
-  aboutParagraph2: 'Mi propuesta comienza por escucharte, entender lo que necesitas y dar a tu propiedad una presentación cuidada. Con cercanía, claridad y atención a cada detalle.',
+  heroDescription: 'Gestión cercana para vender tu propiedad.',
+  aboutTitle: 'Asesoría inmobiliaria, de principio a fin.',
+  aboutParagraph1: 'Soy Carolina. Te acompaño en la venta de tu propiedad, desde su presentación hasta el cierre, con una gestión clara y personal.',
+  aboutParagraph2: '',
 };
 
 export async function getHomepage() {

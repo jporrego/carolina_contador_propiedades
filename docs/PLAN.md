@@ -28,3 +28,4 @@ Work one step at a time; do not implement later stages without the user's reques
 - Step 6: frontend uses published Sanity listings and homepage copy; galleries, status/featured filters and empty state implemented. Live publishing roundtrip needs a populated listing; deployment hooks remain step 7.
 - Property gallery: swipeable carousel and native-dialog image viewer; empty characteristics hidden. Step 7 deferred until the user supplies Cloudflare setup details.
 - Step 7: Pages deployed with Git integration, Sanity webhook configured, SEO foundation and live route checks complete. Search indexing remains off until approved launch content/contact details are supplied.
+- Visual refinement: wider image-led hero, concise Spanish copy, simplified navigation and sections, warm neutral styling; desktop 1920px and mobile 390px layouts reviewed.

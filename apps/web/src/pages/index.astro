@@ -10,33 +10,31 @@ import { getHomepage } from '../data/homepage';
 const content = await getHomepage();
 ---
 <BaseLayout>
-  <section class="hero container" aria-labelledby="hero-title">
-    <div class="hero-heading">
-      <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> Una nueva etapa comienza aquí</p>
-      <div class="hero-title-row">
-        <h1 id="hero-title">{content.heroLine1}<br />{content.heroLine2}</h1>
-        <div class="hero-action">
-          <p>{content.heroDescription}</p>
-          <a class="button" href="#contacto">Quiero vender mi propiedad <span class="button-arrow" aria-hidden="true">↗</span></a>
+  <section class="hero" aria-labelledby="hero-title">
+    <Image class="hero-image" src={interior}
+      alt="Living luminoso con materiales naturales y amplios ventanales."
+      widths={[640, 960, 1440, 2000]} sizes="100vw" width={2000}
+      loading="eager" fetchpriority="high" format="webp" />
+    <div class="hero-content">
+      <h1 id="hero-title">{content.heroLine1}<br />{content.heroLine2}</h1>
+      <div class="hero-bottom">
+        <p>{content.heroDescription}</p>
+        <div class="hero-links">
+          <a class="button button-light" href="#contacto">Vender mi propiedad <span class="button-arrow" aria-hidden="true">↗</span></a>
+          <a class="hero-secondary" href="/propiedades/">Ver propiedades <span aria-hidden="true">↗</span></a>
         </div>
       </div>
     </div>
-    <figure class="hero-figure">
-      <div class="hero-photo">
-        <Image src={interior} alt="Living luminoso con tonos cálidos, materiales naturales y amplios ventanales." widths={[640, 960, 1440, 2000]} sizes="(max-width: 800px) 92vw, 90vw" width={2000} loading="eager" fetchpriority="high" format="webp" />
-        <div class="photo-note" aria-hidden="true"><span>Espacios para vivir.</span><span>Decisiones para avanzar.</span></div>
-      </div>
-      <figcaption><span>Una mirada cercana a tu próxima etapa.</span></figcaption>
-    </figure>
   </section>
 
   <section class="about container" id="carolina" aria-labelledby="about-title">
-    <div class="section-label"><span class="eyebrow">01 / Sobre mí</span><div class="monogram" aria-hidden="true">cc<span>.</span></div><p>Carolina<br />Contador Cortes</p></div>
+    <p class="section-label">Carolina Contador Cortes</p>
     <div class="about-content">
-      <p class="eyebrow">Personas primero. Propiedades después.</p>
       <h2 id="about-title">{content.aboutTitle}</h2>
-      <div class="about-copy"><p>{content.aboutParagraph1}</p><p>{content.aboutParagraph2}</p></div>
-
+      <div class="about-copy">
+        <p>{content.aboutParagraph1}</p>
+        {content.aboutParagraph2 && <p>{content.aboutParagraph2}</p>}
+      </div>
     </div>
   </section>
   <OwnerServices />

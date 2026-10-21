@@ -9,28 +9,23 @@ const emailHref = !contact.isPlaceholder && contact.email
   : undefined;
 ---
 <section class="contact container" id="contacto" aria-labelledby="contact-title">
-  <p class="eyebrow">04 / Conversemos</p>
   <div class="contact-grid">
     <div>
-      <h2 id="contact-title">Tu próxima etapa<br /><span>empieza con un hola.</span></h2>
-      <p class="section-description">Cuéntame sobre tu propiedad, dónde se encuentra y qué tienes en mente. Busquemos juntos el mejor punto de partida.</p>
-      <p class="contact-signature">Carolina Contador Cortes<br /><span>Propiedades</span></p>
+      <h2 id="contact-title">Hablemos de<br />tu propiedad.</h2>
+      <p class="section-description">Cuéntame qué tienes en mente.</p>
     </div>
     <div class="contact-methods">
-      
       <div class="contact-method">
         <h3>WhatsApp</h3>
         {whatsappHref
-          ? <a class="contact-value" href={whatsappHref}>Escríbeme al {contact.phoneLabel} <span aria-hidden="true">↗</span></a>
+          ? <a class="contact-value" href={whatsappHref}>{contact.phoneLabel} <span aria-hidden="true">↗</span></a>
           : <p class="contact-value">{contact.phoneLabel}</p>}
-        <p>Para una primera conversación, a tu ritmo.</p>
       </div>
       <div class="contact-method">
         <h3>Correo electrónico</h3>
         {emailHref
           ? <a class="contact-value" href={emailHref}>{contact.email} <span aria-hidden="true">↗</span></a>
           : <p class="contact-value">{contact.email}</p>}
-        <p>Si prefieres contarme los detalles por escrito.</p>
       </div>
     </div>
   </div>

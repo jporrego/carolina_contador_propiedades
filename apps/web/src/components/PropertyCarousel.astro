@@ -104,7 +104,8 @@ function fullImage(photo: PropertyPhoto) {
 
 <style>
   property-carousel { display: block; margin-block: 2rem; }
-  .carousel-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: thin; border-radius: var(--radius); }
+  .carousel-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; border-radius: var(--radius); }
+  .carousel-track::-webkit-scrollbar { display: none; }
   .carousel-slide { position: relative; flex: 0 0 100%; min-width: 0; scroll-snap-align: start; scroll-snap-stop: always; cursor: zoom-in; }
   .carousel-slide :global(img) { width: 100%; height: clamp(18rem, 48vw, 38rem); object-fit: cover; }
   .expand-photo { position: absolute; bottom: 1rem; right: 1rem; background: var(--color-background); padding: .5rem .85rem; border-radius: 2rem; font-size: .75rem; }
