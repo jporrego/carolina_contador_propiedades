@@ -1,15 +1,30 @@
 ---
+import { Image } from 'astro:assets';
+import serviceInterior from '../assets/apartment.jpg';
 const services = [
   { title: 'Presentación', text: 'Fotografías y descripciones que muestran lo mejor de tu propiedad.' },
   { title: 'Difusión', text: 'Publicación, atención de consultas y coordinación de visitas.' },
   { title: 'Acompañamiento', text: 'Seguimiento de propuestas y apoyo hasta el cierre de la venta.' },
 ];
 ---
-<section class="services container" id="propietarios" aria-labelledby="services-title">
-  <h2 id="services-title">Servicios para propietarios</h2>
-  <div class="service-grid">
-    {services.map((service) => <article class="service-item">
-      <h3>{service.title}</h3><p>{service.text}</p>
-    </article>)}
+<section class="services-band" id="propietarios" aria-labelledby="services-title">
+  <div class="services container">
+    <figure class="service-image">
+      <Image src={serviceInterior} alt="Espacio interior de una vivienda."
+        widths={[480, 800, 1200]} sizes="(max-width: 900px) 90vw, 45vw"
+        width={1200} format="webp" loading="lazy" />
+    </figure>
+    <div class="service-content">
+      <h2 id="services-title">Servicios para<br />propietarios</h2>
+      <div class="service-list">
+        {services.map((service) => <article class="service-item">
+          <h3>{service.title}</h3>
+          <p>{service.text}</p>
+          <svg class="service-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true" focusable="false">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
+        </article>)}
+      </div>
+    </div>
   </div>
 </section>
