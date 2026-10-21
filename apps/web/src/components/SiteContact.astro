@@ -8,9 +8,13 @@ const emailHref = !contact.isPlaceholder && contact.email
   ? 'mailto:' + contact.email + '?subject=' + encodeURIComponent('Quiero vender mi propiedad')
   : undefined;
 ---
-<section class="contact container" id="contacto" aria-labelledby="contact-title">
+<section class="contact-band" id="contacto" aria-labelledby="contact-title">
+  <div class="contact container">
   <div class="contact-grid">
     <div>
+      <svg class="contact-symbol" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+        <path d="M8 30 32 10l24 20 M15 26v28h34V26 M26 54V37h12v17" />
+      </svg>
       <h2 id="contact-title">Hablemos de<br />tu propiedad.</h2>
       <p class="section-description">Cuéntame qué tienes en mente.</p>
     </div>
@@ -28,5 +32,6 @@ const emailHref = !contact.isPlaceholder && contact.email
           : <p class="contact-value">{contact.email}</p>}
       </div>
     </div>
+  </div>
   </div>
 </section>

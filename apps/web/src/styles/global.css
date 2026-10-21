@@ -54,30 +54,43 @@ h1 { font-size: clamp(3.1rem, 6.5vw, 7.7rem); line-height: 1.02; letter-spacing:
 h2 { font-size: clamp(2rem, 3.5vw, 3.65rem); line-height: 1.12; font-weight: 400; letter-spacing: -.045em; margin: 0; text-wrap: balance; }
 h2 span { color: var(--color-muted); }
 h3 { font-size: 1.5rem; line-height: 1.25; letter-spacing: -.025em; font-weight: 400; margin-block: .8rem; }
-.section-label, h2.section-label { font-size: .85rem; color: var(--color-muted); font-weight: 400; line-height: 1.5; letter-spacing: 0; margin: .4rem 0 0; }
+.section-label { font-size: .85rem; color: var(--color-muted); font-weight: 400; line-height: 1.5; letter-spacing: 0; margin: .4rem 0 0; }
 .about { display: grid; grid-template-columns: 1fr 2.1fr; gap: 3rem; padding-block: clamp(4rem, 7vw, 8rem) 3rem; }
 .about-content { max-width: 55rem; }
 .about-content h2 { max-width: 21ch; }
 .about-copy { max-width: 43rem; margin-top: 1.5rem; color: var(--color-muted); font-size: 1.05rem; }
 .about-copy p { margin-block: .75rem; }
-.services { padding-block: 1.5rem clamp(4rem, 7vw, 7rem); }
-.service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; margin-top: 1.5rem; }
+.services { padding-block: 2rem clamp(5rem, 8vw, 9rem); }
+.services > h2 { max-width: 22ch; }
+.service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; margin-top: clamp(2.5rem, 4vw, 4.5rem); }
 .service-item { border-top: 1px solid var(--color-border); padding-top: 1.25rem; }
 .service-item h3 { font-size: 1.35rem; margin-top: 0; }
 .service-item p { margin-bottom: 0; color: var(--color-muted); font-size: .95rem; max-width: 28rem; }
-.process-band { background: #ece6dd; padding-block: clamp(2.5rem, 4vw, 4.5rem); }
-.process-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5rem; list-style: none; margin: 2rem 0 0; padding: 0; }
-.step-number { display: block; color: var(--color-accent); font-size: .75rem; margin-bottom: 1.5rem; }
-.process-list h3 { font-size: 1.25rem; margin-block: 0 .6rem; }
-.process-list p { font-size: .9rem; color: var(--color-muted); margin: 0; max-width: 23rem; }
+.process-band { background: #ece6dd; padding-block: clamp(4.5rem, 7vw, 9rem); }
+.process-list li { min-width: 0; }
+.step-visual { display: flex; align-items: start; justify-content: space-between; gap: 1rem; margin-bottom: 2rem; }
+.step-icon { display: grid; place-items: center; width: clamp(6rem, 8vw, 9rem); aspect-ratio: 1; background: #f6f1e8; color: var(--color-accent); border: 1px solid #dcd0bf; border-radius: 50%; }
+.step-icon svg { width: 54%; height: 54%; overflow: visible; }
+.process-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(2rem, 4vw, 5rem); list-style: none; margin: clamp(3rem, 5vw, 5rem) 0 0; padding: 0; }
+.step-number { display: block; color: var(--color-accent); font-size: .8rem; padding-top: .5rem; }
+.process-list h3 { font-size: clamp(1.35rem, 1.7vw, 1.75rem); margin-block: 0 .6rem; }
+.process-list p { font-size: 1rem; color: var(--color-muted); margin: 0; max-width: 23rem; }
 .text-link { display: inline-flex; align-items: center; gap: 1.5rem; font-size: .85rem; padding-block: .8rem; margin-top: 1rem; }
 .section-description { max-width: 33rem; font-size: 1rem; color: var(--color-muted); margin-top: 1.5rem; }
-.contact { padding-block: clamp(4rem, 7vw, 8rem); border-top: 1px solid var(--color-border); }
-.contact-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 4rem; align-items: start; }
+.contact-band { position: relative; isolation: isolate; overflow: hidden; background: #444e40; color: #fcf6eb; }
+.contact-band::before { content: ''; position: absolute; z-index: -1; width: clamp(28rem, 55vw, 70rem); aspect-ratio: 1; border: 1px solid rgb(242 232 209 / .12); border-radius: 50%; top: -60%; right: -12%; pointer-events: none; }
+.contact { display: grid; align-items: center; min-height: clamp(38rem, 68svh, 52rem); padding-block: clamp(4.5rem, 8vw, 10rem); }
+.contact-symbol { display: block; width: 3rem; height: 3rem; color: #dbcfb8; margin-bottom: 2rem; }
+.contact h2 { font-size: clamp(3rem, 5.7vw, 6.2rem); }
+.contact .section-description { color: #ded8cb; }
+.contact-methods { background: #f7f4ef; color: var(--color-text); border-radius: 1rem; padding: clamp(1.5rem, 3vw, 3rem); box-shadow: 0 1.5rem 4rem rgb(20 28 18 / .12); }
+.contact-methods a:hover { color: var(--color-accent); }
+.contact-method:last-child { border-bottom: 0; padding-bottom: 0; }
+.contact-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(3rem, 8vw, 9rem); align-items: center; }
 .contact-method { border-bottom: 1px solid var(--color-border); padding-block: .8rem 1.5rem; }
 .contact-method + .contact-method { padding-top: 1.5rem; }
-.contact-method h3 { font-size: .75rem; color: var(--color-muted); margin: 0; letter-spacing: 0; }
-.contact-value { display: block; overflow-wrap: anywhere; font-size: clamp(1.1rem, 2vw, 1.7rem); margin: .5rem 0 0; letter-spacing: -.025em; text-decoration: none; }
+.contact-method h3 { font-size: .85rem; color: var(--color-muted); margin: 0; letter-spacing: 0; }
+.contact-value { display: block; overflow-wrap: anywhere; font-size: clamp(1.1rem, 1.8vw, 1.65rem); margin: .5rem 0 0; letter-spacing: -.025em; text-decoration: none; }
 .site-footer { display: flex; flex-wrap: wrap; gap: .75rem 2rem; justify-content: space-between; border-top: 1px solid var(--color-border); padding-block: 1.5rem; font-size: .75rem; color: var(--color-muted); }
 .site-footer a { text-decoration: none; }
 #about-title { white-space: pre-line; }
@@ -85,7 +98,7 @@ h3 { font-size: 1.5rem; line-height: 1.25; letter-spacing: -.025em; font-weight:
   .hero-bottom { align-items: start; flex-direction: column; gap: 1.5rem; }
   .about { grid-template-columns: 1fr; gap: 1.5rem; }
   .process-list { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
-  .contact-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
 }
 @media (max-width: 600px) {
   .site-header { padding-block: 1.25rem; flex-wrap: wrap; gap: 1rem; }
@@ -103,10 +116,17 @@ h3 { font-size: 1.5rem; line-height: 1.25; letter-spacing: -.025em; font-weight:
   .hero-image { object-position: 58% center; }
   .service-grid { grid-template-columns: 1fr; gap: 1.5rem; }
   .service-item { padding-top: 1rem; }
-  .process-list { gap: 2rem 1.5rem; }
-  .step-number { margin-bottom: .75rem; }
-  .process-list h3 { font-size: 1.1rem; }
-  .process-list p { font-size: .85rem; }
+  .process-band { padding-block: 4rem; }
+  .process-list { gap: 2.5rem 1.5rem; margin-top: 2.5rem; }
+  .step-visual { margin-bottom: 1.25rem; }
+  .step-icon { width: 5rem; }
+  .contact { min-height: auto; padding-block: 4rem; }
+  .contact-symbol { margin-bottom: 1.5rem; }
+  .contact h2 { font-size: clamp(2.6rem, 11vw, 4rem); }
+  .contact-band::before { top: -10%; right: -95%; }
+
+  .process-list h3 { font-size: 1.2rem; }
+  .process-list p { font-size: .95rem; }
   .contact-grid { grid-template-columns: 1fr; gap: 1.5rem; }
   .about-copy { font-size: 1rem; }
 }

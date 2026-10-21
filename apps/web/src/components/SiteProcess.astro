@@ -1,17 +1,36 @@
 ---
 const steps = [
-  { title: 'Conversemos', text: 'Tu propiedad, tus tiempos y tus objetivos.' },
-  { title: 'Preparemos', text: 'Definimos el precio y la presentación.' },
-  { title: 'Publiquemos', text: 'Gestionamos las consultas y las visitas.' },
-  { title: 'Avancemos', text: 'Revisamos propuestas y coordinamos el cierre.' },
+  {
+    title: 'Conversemos', text: 'Tu propiedad, tus tiempos y tus objetivos.',
+    icon: 'M14 15h36a5 5 0 0 1 5 5v20a5 5 0 0 1-5 5H30L17 54v-9h-3a5 5 0 0 1-5-5V20a5 5 0 0 1 5-5Z M20 26h24 M20 34h16',
+  },
+  {
+    title: 'Preparemos', text: 'Definimos el precio y la presentación.',
+    icon: 'M8 30 32 10l24 20 M15 26v28h34V26 M26 54V37h12v17 M25 26h14',
+  },
+  {
+    title: 'Publiquemos', text: 'Gestionamos las consultas y las visitas.',
+    icon: 'M12 27h12l25-12v34L24 37H12Z M18 37l4 16h9l-4-15 M49 27l7-4 M49 37l7 4 M7 27v10',
+  },
+  {
+    title: 'Avancemos', text: 'Revisamos propuestas y coordinamos el cierre.',
+    icon: 'M35 29a13 13 0 1 0-4 4L53 55l7-7-6-6-5 5-5-5 5-5-14-8Z M19 18h.01',
+  },
 ];
 ---
 <section class="process-band" id="proceso" aria-labelledby="process-title">
   <div class="process container">
-    <h2 class="section-label" id="process-title">Cómo trabajamos</h2>
+    <h2 id="process-title">Cómo trabajamos</h2>
     <ol class="process-list">
       {steps.map((step, index) => <li>
-        <span class="step-number" aria-hidden="true">0{index + 1}</span>
+        <div class="step-visual">
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+              <path d={step.icon} />
+            </svg>
+          </span>
+          <span class="step-number" aria-hidden="true">0{index + 1}</span>
+        </div>
         <h3>{step.title}</h3><p>{step.text}</p>
       </li>)}
     </ol>
