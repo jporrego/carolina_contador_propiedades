@@ -9,6 +9,8 @@ interface Props {
   noindex?: boolean;
 }
 const { title = site.title, description = site.description, noindex = false } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const preventIndexing = noindex || import.meta.env.SITE_INDEXABLE !== 'true' || (import.meta.env.CF_PAGES_BRANCH && import.meta.env.CF_PAGES_BRANCH !== 'main');
 ---
 <!doctype html>
 <html lang={site.language}>
@@ -16,10 +18,18 @@ const { title = site.title, description = site.description, noindex = false } = 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    {noindex && <meta name="robots" content="noindex, follow" />}
+    {preventIndexing && <meta name="robots" content="noindex, follow" />}
     <meta name="theme-color" content="#f6f3ee" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_CL" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
   </head>
   <body>
     <a class="skip-link" href="#contenido">Saltar al contenido</a>

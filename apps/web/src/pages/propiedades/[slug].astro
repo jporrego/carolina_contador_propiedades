@@ -11,7 +11,7 @@ export async function getStaticPaths() {
 const { property } = Astro.props;
 const related = (await getProperties()).filter((item) => item.slug !== property.slug);
 ---
-<BaseLayout title={property.title + ' | Carolina Contador Cortes'} description={property.description} noindex>
+<BaseLayout title={property.title + ' | Carolina Contador Cortes'} description={property.description}>
   <article class="property-detail container">
     <nav class="breadcrumbs" aria-label="Ruta de navegación"><a href="/">Inicio</a><span aria-hidden="true">/</span><a href="/propiedades/">Propiedades</a><span aria-hidden="true">/</span><span aria-current="page">Detalle</span></nav>
     
