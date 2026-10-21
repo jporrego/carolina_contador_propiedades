@@ -1,0 +1,26 @@
+---
+const steps = [
+  { title: 'Conversemos sobre tu propiedad', text: 'Me cuentas dónde está, cuáles son sus características y qué esperas de la venta. Empezamos por entender tus prioridades.' },
+  { title: 'Preparemos su presentación', text: 'Revisamos la información, el precio de publicación y los materiales necesarios para presentar la propiedad con claridad.' },
+  { title: 'Abramos la puerta a las visitas', text: 'Publicamos, atendemos consultas y coordinamos visitas. Mantenemos la conversación abierta para evaluar el interés recibido.' },
+  { title: 'Evaluemos el siguiente paso', text: 'Revisamos las propuestas y coordinamos las gestiones que correspondan para avanzar hacia el cierre.' },
+];
+---
+<section class="process-band" id="proceso" aria-labelledby="process-title">
+  <div class="process container">
+    <div class="process-heading">
+      <p class="eyebrow">03 / Cómo trabajamos</p>
+      <h2 id="process-title">Un camino claro.<br /><span>Una decisión a la vez.</span></h2>
+      <p class="section-description">Saber qué viene después también es parte de sentirse acompañado.</p>
+      <a class="text-link" href="#contacto">Hablemos de tu propiedad <span aria-hidden="true">↗</span></a>
+    </div>
+    <ol class="process-list">
+      {steps.map((step, index) => (
+        <li>
+          <span class="step-number" aria-hidden="true">0{index + 1}</span>
+          <div><h3>{step.title}</h3><p>{step.text}</p></div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

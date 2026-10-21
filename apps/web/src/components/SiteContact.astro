@@ -1,0 +1,37 @@
+---
+import { contact } from '../config/contact';
+const message = encodeURIComponent('Hola Carolina, me gustaría conversar sobre la venta de mi propiedad.');
+const whatsappHref = !contact.isPlaceholder && contact.whatsappNumber
+  ? 'https://wa.me/' + contact.whatsappNumber + '?text=' + message
+  : undefined;
+const emailHref = !contact.isPlaceholder && contact.email
+  ? 'mailto:' + contact.email + '?subject=' + encodeURIComponent('Quiero vender mi propiedad')
+  : undefined;
+---
+<section class="contact container" id="contacto" aria-labelledby="contact-title">
+  <p class="eyebrow">04 / Conversemos</p>
+  <div class="contact-grid">
+    <div>
+      <h2 id="contact-title">Tu próxima etapa<br /><span>empieza con un hola.</span></h2>
+      <p class="section-description">Cuéntame sobre tu propiedad, dónde se encuentra y qué tienes en mente. Busquemos juntos el mejor punto de partida.</p>
+      <p class="contact-signature">Carolina Contador Cortes<br /><span>Propiedades</span></p>
+    </div>
+    <div class="contact-methods">
+      {contact.isPlaceholder && <p class="sample-notice">Datos de ejemplo · Canales de contacto aún no habilitados.</p>}
+      <div class="contact-method">
+        <h3>WhatsApp</h3>
+        {whatsappHref
+          ? <a class="contact-value" href={whatsappHref}>Escríbeme al {contact.phoneLabel} <span aria-hidden="true">↗</span></a>
+          : <p class="contact-value">{contact.phoneLabel}</p>}
+        <p>Para una primera conversación, a tu ritmo.</p>
+      </div>
+      <div class="contact-method">
+        <h3>Correo electrónico</h3>
+        {emailHref
+          ? <a class="contact-value" href={emailHref}>{contact.email} <span aria-hidden="true">↗</span></a>
+          : <p class="contact-value">{contact.email}</p>}
+        <p>Si prefieres contarme los detalles por escrito.</p>
+      </div>
+    </div>
+  </div>
+</section>

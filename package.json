@@ -1,0 +1,12 @@
+{
+  "name": "carolina-contador-propiedades",
+  "private": true,
+  "packageManager": "pnpm@11.25.0",
+  "engines": { "node": ">=22.22.0" },
+  "scripts": {
+    "dev": "pnpm --filter @carolina/web dev",
+    "build": "pnpm --filter @carolina/web build",
+    "preview": "pnpm --filter @carolina/web preview",
+    "check": "pnpm --filter @carolina/web check"
+  }
+}
