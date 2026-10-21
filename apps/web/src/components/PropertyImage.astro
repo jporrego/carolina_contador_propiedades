@@ -1,0 +1,9 @@
+---
+import { photoUrl, type PropertyPhoto } from '../data/properties';
+interface Props { photo: PropertyPhoto; eager?: boolean; sizes?: string; }
+const { photo, eager = false, sizes = '(max-width: 600px) 90vw, 45vw' } = Astro.props;
+---
+<img src={photoUrl(photo, 960)}
+  srcset={[400, 640, 960, 1440, 1920].map((width) => photoUrl(photo, width) + ' ' + width + 'w').join(', ')}
+  sizes={sizes} width="1440" height="1080" alt={photo.alt}
+  loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : 'auto'} decoding="async" />

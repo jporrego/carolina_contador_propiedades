@@ -1,6 +1,7 @@
 import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { property } from './schemaTypes/property';
+import { homepage } from './schemaTypes/homepage';
 
 const projectId = process.env.SANITY_STUDIO_PROJECT_ID;
 const dataset = process.env.SANITY_STUDIO_DATASET || 'production';
@@ -17,6 +18,7 @@ export default defineConfig({
     structureTool({
       title: 'Propiedades',
       structure: (S) => S.list().title('Gestionar propiedades').items([
+        S.listItem().title('Página de inicio').child(S.document().schemaType('homepage').documentId('homepage')),
         S.documentTypeListItem('property').title('Todas las propiedades'),
         S.divider(),
         ...[
@@ -26,11 +28,12 @@ export default defineConfig({
           ['rented', 'Arrendadas'],
           ['archived', 'Archivadas'],
         ].map(([status, title]) => S.listItem().title(title).child(
-          S.documentList().title(title).schemaType('property')
+          S.documentList().title(title).schemaType('property').apiVersion('2026-10-21')
             .filter('_type == "property" && status == $status').params({ status }),
         )),
       ]),
     }),
   ],
-  schema: { types: [property] },
+  schema: { types: [property, homepage], templates: (templates) => templates.filter((template) => template.schemaType !== 'homepage') },
+  document: { actions: (actions, context) => context.schemaType === 'homepage' ? actions.filter((action) => action.action !== 'duplicate') : actions },
 });

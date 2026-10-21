@@ -1,57 +1,67 @@
-import type { ImageMetadata } from 'astro';
-import interior from '../assets/interior.jpg';
-import house from '../assets/house.jpg';
-import apartment from '../assets/apartment.jpg';
+import { querySanity } from '../lib/sanity';
 
+export interface PropertyPhoto { url: string; alt: string; }
 export interface Property {
-  slug: string;
-  title: string;
-  type: 'Casa' | 'Departamento';
-  location: string;
-  priceUf: number;
-  bedrooms: number;
-  bathrooms: number;
-  areaM2: number;
-  description: string;
-  features: string[];
-  image: ImageMetadata;
-  imageAlt: string;
-  isExample: true;
+  slug: string; title: string; type: string; location: string;
+  price: number; currency: 'UF' | 'CLP'; operation: 'sale' | 'rent';
+  status: 'available' | 'reserved'; featured: boolean;
+  bedrooms: number; bathrooms: number; areaM2?: number; landAreaM2?: number;
+  description: string; features: string[]; photos: PropertyPhoto[];
+}
+interface RawProperty extends Omit<Property, 'photos'> {
+  photos: Array<{ url: string | null; alt: string; hotspot?: {x: number; y: number} }>;
 }
 
-// Fictional examples for design review. These are not active listings.
-export const properties: Property[] = [
-  {
-    slug: 'casa-con-jardin',
-    title: 'Una casa para disfrutar al aire libre',
-    type: 'Casa',
-    location: 'Sector residencial',
-    priceUf: 9800, bedrooms: 4, bathrooms: 3, areaM2: 180,
-    description: 'Una casa pensada para compartir en familia, con espacios amplios y conexión con el exterior. Su distribución permite imaginar distintos usos para cada ambiente, desde un lugar de encuentro hasta un rincón de trabajo.',
-    features: ['Jardín privado', 'Terraza', 'Cocina integrada', 'Dos estacionamientos'],
-    image: house, imageAlt: 'Casa contemporánea con grandes ventanales y espacios exteriores.', isExample: true,
-  },
-  {
-    slug: 'departamento-luminoso',
-    title: 'Luz y calma en cada rincón',
-    type: 'Departamento',
-    location: 'Sector urbano',
-    priceUf: 5200, bedrooms: 2, bathrooms: 2, areaM2: 78,
-    description: 'Un departamento con ambientes luminosos y una distribución práctica para el día a día. El espacio principal reúne las áreas de descanso y encuentro en una propuesta acogedora.',
-    features: ['Balcón', 'Dormitorio principal en suite', 'Cocina equipada', 'Un estacionamiento'],
-    image: interior, imageAlt: 'Living en tonos cálidos con luz natural.', isExample: true,
-  },
-  {
-    slug: 'departamento-amplio',
-    title: 'Espacio para una nueva etapa',
-    type: 'Departamento',
-    location: 'Sector residencial',
-    priceUf: 7400, bedrooms: 3, bathrooms: 2, areaM2: 110,
-    description: 'Un departamento con espacios flexibles para distintas etapas de la vida. Sus tres dormitorios permiten combinar descanso, trabajo y tiempo en familia.',
-    features: ['Living y comedor', 'Espacio para escritorio', 'Bodega', 'Un estacionamiento'],
-    image: apartment, imageAlt: 'Interior residencial contemporáneo.', isExample: true,
-  },
-];
+export async function getProperties(): Promise<Property[]> {
+  const rows = await querySanity<RawProperty[]>(`*[
+    _type == "property" && !(_id in path("drafts.**")) &&
+    status in ["available", "reserved"]
+  ] | order(_createdAt desc) {
+    "slug": slug.current, title, type, location, price, currency, operation,
+    status, featured, bedrooms, bathrooms, areaM2, landAreaM2, description,
+    "features": coalesce(features, []),
+    "photos": photos[]{alt, hotspot, "url": asset->url}
+  }`);
+  const slugs = new Set<string>();
+  return rows.map((row) => {
+    if (!row.slug || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(row.slug) || slugs.has(row.slug)) {
+      throw new Error('Invalid or duplicate property slug: ' + row.slug);
+    }
+    slugs.add(row.slug);
+    if (!row.title || !row.location || !row.description || !(row.price > 0) ||
+        !['UF', 'CLP'].includes(row.currency) || !['sale', 'rent'].includes(row.operation)) {
+      throw new Error('Incomplete published property: ' + row.slug);
+    }
+    const photos = (row.photos || []).map((photo) => {
+      if (!photo.url || !photo.alt || !photo.url.startsWith('https://cdn.sanity.io/images/')) {
+        throw new Error('Missing photo or description on property: ' + row.slug);
+      }
+      const url = new URL(photo.url);
+      url.searchParams.set('auto', 'format');
+      url.searchParams.set('fit', 'crop');
+      if (photo.hotspot) {
+        url.searchParams.set('crop', 'focalpoint');
+        url.searchParams.set('fp-x', String(photo.hotspot.x));
+        url.searchParams.set('fp-y', String(photo.hotspot.y));
+      }
+      return { url: url.toString(), alt: photo.alt };
+    });
+    if (!photos.length) throw new Error('Published property needs at least one photo: ' + row.slug);
+    const names: Record<string, string> = { house: 'Casa', apartment: 'Departamento', land: 'Terreno', office: 'Oficina' };
+    return { ...row, features: (row.features || []).filter((feature) => typeof feature === 'string' && feature.trim()).map((feature) => feature.trim()), type: names[row.type] || row.type, photos };
+  });
+}
 
-export const formatPrice = (value: number) =>
-  'UF ' + new Intl.NumberFormat('es-CL', { maximumFractionDigits: 0 }).format(value);
+export function photoUrl(photo: PropertyPhoto, width: number, ratio = 4 / 3) {
+  const url = new URL(photo.url);
+  url.searchParams.set('w', String(width));
+  url.searchParams.set('h', String(Math.round(width / ratio)));
+  return url.toString();
+}
+export const formatPrice = (property: Property) =>
+  (property.currency === 'UF'
+    ? 'UF ' + new Intl.NumberFormat('es-CL', { maximumFractionDigits: 2 }).format(property.price)
+    : new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', maximumFractionDigits: 0 }).format(property.price))
+  + (property.operation === 'rent' ? ' / mes' : '');
+export const availability = (property: Property) =>
+  property.status === 'reserved' ? 'Reservada' : property.operation === 'rent' ? 'En arriendo' : 'En venta';

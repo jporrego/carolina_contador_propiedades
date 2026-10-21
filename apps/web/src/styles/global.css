@@ -189,3 +189,13 @@ h3 { font-size: 1.5rem; line-height: 1.25; letter-spacing: -.03em; font-weight: 
   .property-facts dt { font-size: .65rem; }
   .property-facts dd { font-size: 1.3rem; }
 }
+.property-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+.property-gallery:empty { display: none; }
+.property-gallery figure { margin: 0; }
+.property-gallery img { width: 100%; border-radius: var(--radius); }
+.empty-properties { padding: 3rem 0; border-top: 1px solid var(--color-border); }
+.empty-properties h2 { max-width: 40rem; }
+.detail-description { white-space: pre-line; }
+@media (max-width: 600px) { .property-gallery { grid-template-columns: 1fr; } }
+
+.hero-action p, #about-title { white-space: pre-line; }

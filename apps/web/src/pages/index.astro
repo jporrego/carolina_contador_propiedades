@@ -6,15 +6,17 @@ import SiteProcess from '../components/SiteProcess.astro';
 import SiteContact from '../components/SiteContact.astro';
 import FeaturedProperties from '../components/FeaturedProperties.astro';
 import interior from '../assets/interior.jpg';
+import { getHomepage } from '../data/homepage';
+const content = await getHomepage();
 ---
 <BaseLayout>
   <section class="hero container" aria-labelledby="hero-title">
     <div class="hero-heading">
       <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> Una nueva etapa comienza aquí</p>
       <div class="hero-title-row">
-        <h1 id="hero-title">Tu propiedad,<br />en buenas manos.</h1>
+        <h1 id="hero-title">{content.heroLine1}<br />{content.heroLine2}</h1>
         <div class="hero-action">
-          <p>Vender es una gran decisión.<br />Demos el siguiente paso juntos.</p>
+          <p>{content.heroDescription}</p>
           <a class="button" href="#contacto">Quiero vender mi propiedad <span class="button-arrow" aria-hidden="true">↗</span></a>
         </div>
       </div>
@@ -32,11 +34,8 @@ import interior from '../assets/interior.jpg';
     <div class="section-label"><span class="eyebrow">01 / Sobre mí</span><div class="monogram" aria-hidden="true">cc<span>.</span></div><p>Carolina<br />Contador Cortes</p></div>
     <div class="about-content">
       <p class="eyebrow">Personas primero. Propiedades después.</p>
-      <h2 id="about-title">Detrás de cada propiedad,<br class="desktop-break" /> hay una historia.<br /><span>Me gustaría conocer la tuya.</span></h2>
-      <div class="about-copy">
-        <p>Soy Carolina Contador Cortes. Quiero acompañarte en una decisión importante: vender tu propiedad y abrir la puerta a lo que viene.</p>
-        <p>Mi propuesta comienza por escucharte, entender lo que necesitas y dar a tu propiedad una presentación cuidada. Con cercanía, claridad y atención a cada detalle.</p>
-      </div>
+      <h2 id="about-title">{content.aboutTitle}</h2>
+      <div class="about-copy"><p>{content.aboutParagraph1}</p><p>{content.aboutParagraph2}</p></div>
 
     </div>
   </section>

@@ -28,6 +28,6 @@ No API token is needed in the browser. Never put private API tokens in SANITY_ST
 
 ## Current scope
 
-The editor is configured but needs your real Sanity project before sign-in, uploads and publishing can be verified.
-The website still reads local fixture data. Connecting published content and applying status/featured filters is step 6.
+The editor is connected locally to project vzzp5544, dataset production. A first published listing is still needed for a full upload-to-website verification.
+The website now reads published Sanity content. Rebuild after publishing; deployment hooks will be configured in step 7.
 Public example labels have been removed for design review; fixture status stays documented here, and property pages remain noindex until launch.

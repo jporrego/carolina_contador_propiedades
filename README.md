@@ -37,3 +37,22 @@ Typed sample data lives in apps/web/src/data/properties.ts. The catalogue and al
 
 ## Sanity Studio
 See apps/studio/README.md for account setup. Commands: pnpm studio, pnpm studio:check and pnpm studio:build. The editor runs separately from Astro.
+
+## Published content (step 6)
+
+Copy apps/web/.env.example to apps/web/.env.local before starting Astro.
+The public project ID and dataset do not require API tokens. Set the same SANITY_PROJECT_ID and SANITY_DATASET variables in Cloudflare at deployment.
+
+The website reads the published perspective of Sanity:
+- Catalogue and detail routes: available and reserved properties only.
+- Homepage: up to two featured available properties.
+- Drafts, unpublished, archived, sold and rented properties are excluded.
+- No published listings means a normal empty catalogue, not fallback fixture listings.
+- Network/API errors fail the build, preserving the previous deployment instead of silently publishing an empty site.
+- Ordered photographs use the first image as cover. Sanity CDN serves responsive formats and focal-point crops.
+- Página de inicio edits the hero and biography. Empty fields use the existing copy.
+- Services, process, contact details and hero photography remain in local code.
+- This is static rendering: after publishing content, rebuild with pnpm build (or restart pnpm dev for local route changes). Automatic publish hooks are step 7.
+- Property pages remain noindex until launch review in step 7.
+
+To check the flow: publish a property with required fields and a photo, run pnpm build, then pnpm preview. Toggle its featured/status fields, republish and rebuild. Unpublishing removes the route on the next build. Do not add secrets to the public dataset.

@@ -25,3 +25,5 @@ Work one step at a time; do not implement later stages without the user's reques
 - Step 3: owner services, four-step selling process, contact section and expanded navigation. Sample contact details remain non-interactive.
 - Step 4: three fictional listings, catalogue, static detail pages, related properties and homepage featured section. Example catalogue/detail pages are noindex; no real availability is implied.
 - Step 5: Studio code and property schema prepared; live account connection and publishing verification require the user-created Sanity project. Frontend integration remains step 6.
+- Step 6: frontend uses published Sanity listings and homepage copy; galleries, status/featured filters and empty state implemented. Live publishing roundtrip needs a populated listing; deployment hooks remain step 7.
+- Property gallery: swipeable carousel and native-dialog image viewer; empty characteristics hidden. Step 7 deferred until the user supplies Cloudflare setup details.

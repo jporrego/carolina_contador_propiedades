@@ -1,14 +1,16 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PropertyCard from '../../components/PropertyCard.astro';
-import { properties } from '../../data/properties';
+import { getProperties } from '../../data/properties';
+const properties = await getProperties();
 ---
 <BaseLayout title="Propiedades | Carolina Contador Cortes" description="Explora la presentación de propiedades de Carolina Contador Cortes. Catálogo de propiedades." noindex>
   <section class="catalog container" aria-labelledby="catalog-title">
-    <p class="eyebrow">Propiedades / En venta</p>
+    <p class="eyebrow">Propiedades</p>
     <h1 id="catalog-title">Un lugar para<br />lo que viene.</h1>
     <p class="section-description">Conoce los espacios y descubre sus detalles.</p>
     
+    {properties.length === 0 && <div class="empty-properties"><h2>Estamos preparando nuevas oportunidades.</h2><p>Cuéntame qué estás buscando y conversemos sobre tu próximo hogar.</p><a class="text-link" href="/#contacto">Conversar con Carolina ↗</a></div>}
     <div class="property-grid">{properties.map((property) => <PropertyCard property={property} />)}</div>
   </section>
 </BaseLayout>
