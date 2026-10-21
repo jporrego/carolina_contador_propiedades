@@ -34,3 +34,6 @@ Edit apps/web/src/config/contact.ts. Replace the sample phone and email, use int
 
 ## Sample listings
 Typed sample data lives in apps/web/src/data/properties.ts. The catalogue and all detail routes are generated statically and marked noindex while they contain examples. Replace the fixtures with Sanity in step 6 before enabling indexing. No exact addresses or real availability are asserted.
+
+## Sanity Studio
+See apps/studio/README.md for account setup. Commands: pnpm studio, pnpm studio:check and pnpm studio:build. The editor runs separately from Astro.
