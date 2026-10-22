@@ -57,3 +57,8 @@ Hosted CMS: https://carolina-contador.sanity.studio/ . Sanity app ID eqeg3rrwpvp
 - Verified HTTPS 200 and homepage canonical/noindex at Cloudflare using authoritative DNS with normal certificate verification. Verified both redirects preserve /propiedades/?test=domain.
 - Local recursive/browser DNS caches still had stale parking/negative answers at verification time. Normal browser access needs a final recheck after these caches expire; do not bypass certificate warnings.
 - SITE_INDEXABLE remains false. colormural's domain, project and existing redirect were not modified.
+## Propagation recovery — 2026-10-22
+- Confirmed independently over DNS-over-HTTPS: Google resolves apex to Cloudflare (104.21.92.246 / 172.67.200.252, erin/nolan nameservers), while Cloudflare's public resolver still returns Dynadot parking (185.53.179.149, ns1/ns2.dyna-ns.net). Public access is therefore inconsistent despite Pages Active/SSL status.
+- Disabled only the `Carolina primary domain` Bulk Redirect Rule so the pages.dev host remains a working fallback. List/configuration retained for re-enabling after normal custom-domain HTTPS works consistently. www-to-apex rule remains enabled.
+- Verified HTTPS 200 and the homepage directly at https://carolina-contador-propiedades.pages.dev/?preview=1 . The query avoids a previously cached permanent redirect.
+- Keep SITE_URL=https://carolinacontador.cl and SITE_INDEXABLE=false. Next check: normal custom-domain HTTPS plus both public resolver results; re-enable the Carolina bulk redirect only after these pass. Do not bypass certificate errors or change unrelated domain settings.
