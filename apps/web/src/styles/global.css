@@ -90,6 +90,7 @@ h3 { font-size: 1.5rem; line-height: 1.25; letter-spacing: -.025em; font-weight:
 .text-link:hover { color: var(--color-accent-ink); border-color: currentColor; }
 .section-description { max-width: 32rem; font-size: 1rem; line-height: 1.8; color: var(--color-muted); margin-top: 1.5rem; }
 .contact-band { background: var(--contact-background, var(--color-accent)); color: var(--contact-foreground, var(--color-on-accent)); margin: 0 clamp(.75rem, 1.6vw, 2rem) 1.5rem; border-radius: .75rem; }
+.services-band + .contact-band { margin-block-start: clamp(3rem, 6vw, 6rem); }
 .contact { padding-block: clamp(4rem, 7vw, 8rem); }
 .contact-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: clamp(3rem, 7vw, 8rem); align-items: center; }
 .contact h2 { font-size: clamp(2.6rem, 4.7vw, 5rem); }

@@ -62,3 +62,9 @@ Hosted CMS: https://carolina-contador.sanity.studio/ . Sanity app ID eqeg3rrwpvp
 - Disabled only the `Carolina primary domain` Bulk Redirect Rule so the pages.dev host remains a working fallback. List/configuration retained for re-enabling after normal custom-domain HTTPS works consistently. www-to-apex rule remains enabled.
 - Verified HTTPS 200 and the homepage directly at https://carolina-contador-propiedades.pages.dev/?preview=1 . The query avoids a previously cached permanent redirect.
 - Keep SITE_URL=https://carolinacontador.cl and SITE_INDEXABLE=false. Next check: normal custom-domain HTTPS plus both public resolver results; re-enable the Carolina bulk redirect only after these pass. Do not bypass certificate errors or change unrelated domain settings.
+
+## Normal public access verified — 2026-10-22
+- Normal HTTPS requests now return 200 on carolinacontador.cl without DNS overrides. www redirects to the apex and preserves paths/query strings. Canonicals, sitemap and robots use the final domain.
+- Re-enabled only `Carolina primary domain` Bulk Redirect Rule after public HTTPS succeeded; pages.dev now forwards to the primary domain again.
+- Current catalogue is empty (the previous test listing is unpublished). Homepage contact spacing now also handles services immediately followed by contact when featured listings are absent.
+- Search indexing remains disabled. Next launch tasks: approve public copy, enable production indexing, verify Search Console and submit the sitemap; eligible Google Business Profile setup is separate.
