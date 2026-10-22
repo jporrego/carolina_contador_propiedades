@@ -3,14 +3,58 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PropertyCard from '../../components/PropertyCard.astro';
 import { getProperties } from '../../data/properties';
 const properties = await getProperties();
+const filters = [
+  { value: 'all', label: 'Todas' },
+  { value: 'Casa', label: 'Casas' },
+  { value: 'Departamento', label: 'Departamentos' },
+  { value: 'Terreno', label: 'Terrenos' },
+  { value: 'Oficina', label: 'Oficinas' },
+];
 ---
-<BaseLayout title="Propiedades | Carolina Contador Cortes" description="Explora la presentación de propiedades de Carolina Contador Cortes. Catálogo de propiedades.">
-  <section class="catalog container" aria-labelledby="catalog-title">
-
+<BaseLayout title="Propiedades | Carolina Contador Cortes" description="Explora las propiedades en venta y arriendo de Carolina Contador Cortes.">
+  <section class="catalog container" aria-labelledby="catalog-title" data-property-catalog>
     <h1 id="catalog-title">Propiedades</h1>
-
-    
-    {properties.length === 0 && <div class="empty-properties"><h2>No hay propiedades disponibles por ahora.</h2><p>Contáctame para conocer próximas publicaciones.</p><a class="text-link" href="/#contacto">Conversar con Carolina ↗</a></div>}
-    <div class="property-grid">{properties.map((property) => <PropertyCard property={property} />)}</div>
+    {properties.length > 0 && <div class="catalog-controls" data-catalog-controls hidden>
+      <div class="property-filters" role="group" aria-label="Filtrar por tipo de propiedad">
+        {filters.map((filter) => <button type="button" class="property-filter" data-property-filter={filter.value} aria-pressed={filter.value === 'all' ? 'true' : 'false'} aria-controls="catalog-results">{filter.label}</button>)}
+      </div>
+      <p class="catalog-count" role="status" aria-live="polite" aria-atomic="true" data-catalog-count>{properties.length} {properties.length === 1 ? 'propiedad' : 'propiedades'}</p>
+    </div>}
+    <div id="catalog-results">
+      {properties.length === 0 && <div class="empty-properties"><h2>No hay propiedades disponibles por ahora.</h2><p>Contáctame para conocer próximas publicaciones.</p><a class="text-link" href="/#contacto">Conversar con Carolina ↗</a></div>}
+      <div class="property-grid">{properties.map((property) => <PropertyCard property={property} />)}</div>
+      <div class="empty-properties" data-type-empty hidden>
+        <h2>No hay propiedades de este tipo por ahora.</h2>
+        <p>Prueba con otro tipo o explora todas las propiedades.</p>
+        <button type="button" class="filter-reset" data-filter-reset>Ver todas las propiedades <span aria-hidden="true">↗</span></button>
+      </div>
+    </div>
   </section>
 </BaseLayout>
+
+<script>
+  const catalog = document.querySelector<HTMLElement>('[data-property-catalog]');
+  const controls = catalog?.querySelector<HTMLElement>('[data-catalog-controls]');
+  if (catalog && controls) {
+    const buttons = controls.querySelectorAll<HTMLButtonElement>('[data-property-filter]');
+    const cards = catalog.querySelectorAll<HTMLElement>('.property-card[data-property-type]');
+    const count = controls.querySelector<HTMLElement>('[data-catalog-count]');
+    const empty = catalog.querySelector<HTMLElement>('[data-type-empty]');
+    const selectType = (type: string) => {
+      let visible = 0;
+      cards.forEach((card) => {
+        card.hidden = type !== 'all' && card.dataset.propertyType !== type;
+        if (!card.hidden) visible++;
+      });
+      buttons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.propertyFilter === type)));
+      if (count) count.textContent = visible + (visible === 1 ? ' propiedad' : ' propiedades');
+      if (empty) empty.hidden = visible > 0;
+    };
+    buttons.forEach((button) => button.addEventListener('click', () => selectType(button.dataset.propertyFilter || 'all')));
+    catalog.querySelector<HTMLButtonElement>('[data-filter-reset]')?.addEventListener('click', () => {
+      selectType('all');
+      controls.querySelector<HTMLButtonElement>('[data-property-filter="all"]')?.focus({ preventScroll: true });
+    });
+    controls.hidden = false;
+  }
+</script>

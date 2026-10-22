@@ -60,22 +60,22 @@ const palettes = [
   .palette-panel { min-width: 0; }
   .palette-label { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: .85rem; }
   .palette-label p { margin: 0; font-size: .95rem; font-weight: 500; letter-spacing: -.02em; }
-  .palette-number { font-size: .7rem; color: var(--color-muted); margin-right: .65rem; }
-  .palette-hex { color: var(--color-muted); font-size: .75rem; }
+  .palette-number { font-size: var(--text-small); color: var(--color-muted); margin-right: .65rem; }
+  .palette-hex { color: var(--color-muted); font-size: var(--text-small); }
   .palette-panel :global(.contact-band) { margin: 0; border-radius: .75rem; }
   .palette-panel :global(.contact) { width: auto; margin: 0; padding: clamp(1.75rem, 3vw, 3rem); }
   .palette-panel :global(.contact-grid) { grid-template-columns: 1fr; gap: 2.5rem; }
   .palette-panel :global(.contact h2) { font-size: clamp(2.25rem, 3.5vw, 3.6rem); }
-  .palette-panel :global(.contact .section-eyebrow) { margin-bottom: 1.5rem; font-size: .65rem; }
+  .palette-panel :global(.contact .section-eyebrow) { margin-bottom: 1.5rem; }
   .palette-panel :global(.contact-methods) { max-width: none; }
   .palette-panel :global(.contact-method) { padding-block: 1.25rem; }
   .palette-panel :global(.contact-method:last-child) { padding-bottom: 0; }
   .palette-panel :global(.contact-value) { font-size: clamp(1rem, 1.5vw, 1.35rem); }
-  .palette-footnote { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .4rem 1rem; margin-top: .85rem; color: var(--color-muted); font-size: .75rem; }
+  .palette-footnote { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .4rem 1rem; margin-top: .85rem; color: var(--color-muted); font-size: var(--text-small); }
   .palette-footnote p { margin: 0; }
   .palette-footnote a { text-decoration: none; }
   .palette-footnote a:hover { text-decoration: underline; }
-  .comparison-note { font-size: .8rem; color: var(--color-muted); margin: 3rem 0 0; }
+  .comparison-note { font-size: var(--text-small); color: var(--color-muted); margin: 3rem 0 0; }
   [data-view="full"] .palette-grid { grid-template-columns: 1fr; }
   [data-view="full"] .palette-panel :global(.contact) { padding: clamp(2.5rem, 6vw, 6rem); }
   [data-view="full"] .palette-panel :global(.contact-grid) { grid-template-columns: 1.3fr 1fr; gap: 4rem; }

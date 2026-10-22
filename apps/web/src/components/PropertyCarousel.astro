@@ -108,7 +108,7 @@ function fullImage(photo: PropertyPhoto) {
   .carousel-track::-webkit-scrollbar { display: none; }
   .carousel-slide { position: relative; flex: 0 0 100%; min-width: 0; scroll-snap-align: start; scroll-snap-stop: always; cursor: zoom-in; }
   .carousel-slide :global(img) { width: 100%; height: clamp(18rem, 48vw, 38rem); object-fit: cover; }
-  .expand-photo { position: absolute; bottom: 1rem; right: 1rem; background: var(--color-background); padding: .5rem .85rem; border-radius: 2rem; font-size: .75rem; }
+  .expand-photo { position: absolute; bottom: 1rem; right: 1rem; background: var(--color-background); padding: .5rem .85rem; border-radius: 2rem; font-size: var(--text-small); font-weight: 600; }
   .carousel-controls { display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin-top: .6rem; }
   button { cursor: pointer; border: 1px solid var(--color-border); background: var(--color-background); color: var(--color-text); border-radius: 2rem; min-width: 44px; min-height: 44px; padding: .5rem .9rem; }
   button:hover { background: #eae4db; }
@@ -120,7 +120,7 @@ function fullImage(photo: PropertyPhoto) {
   .viewer-stage { display: flex; align-items: center; justify-content: center; gap: .75rem; margin-top: 1rem; }
   .viewer-stage img { min-width: 0; max-width: 100%; max-height: 72dvh; object-fit: contain; flex: 1; }
   .viewer-stage button { flex-shrink: 0; }
-  [data-viewer-caption] { text-align: center; font-size: .8rem; margin-bottom: 0; }
+  [data-viewer-caption] { text-align: center; font-size: var(--text-small); margin-bottom: 0; }
   @media (max-width: 600px) {
     .photo-dialog { padding: .75rem; }
     .viewer-stage { position: relative; padding-bottom: 3.5rem; }

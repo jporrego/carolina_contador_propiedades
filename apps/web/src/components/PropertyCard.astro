@@ -4,13 +4,14 @@ import { formatPrice, availability, type Property } from '../data/properties';
 interface Props { property: Property; }
 const { property } = Astro.props;
 ---
-<article class="property-card">
+<article class="property-card" data-property-type={property.type}>
   <a href={'/propiedades/' + property.slug + '/'} class="property-card-link">
     <div class="property-card-image">
       <PropertyImage photo={property.photos[0]} />
       <span class="property-badge">{property.type} · {availability(property)}</span>
     </div>
-    <div class="property-card-heading"><h3>{property.title}</h3><span aria-hidden="true">↗</span></div>
+    <div class="property-card-body">
+    <div class="property-card-heading"><h3>{property.title}</h3><span class="property-card-arrow" aria-hidden="true">↗</span></div>
     <p class="property-location">{property.location}</p>
     <p class="property-specs">
       {property.type !== 'Terreno' && <>{property.bedrooms} dorm. · {property.bathrooms} baños</>}
@@ -18,5 +19,6 @@ const { property } = Astro.props;
       {property.landAreaM2 && <> · {property.landAreaM2} m² de terreno</>}
     </p>
     <p class="property-price">{formatPrice(property)}</p>
+    </div>
   </a>
 </article>

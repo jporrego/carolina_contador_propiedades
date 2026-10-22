@@ -1,7 +1,8 @@
 ---
 import { site } from '../config/site';
 ---
-<header class="site-header container">
+<header class="site-header-shell" data-site-header>
+<div class="site-header container">
   <a class="brand" href="/" aria-label={site.name + ' — Inicio'}>
     <span class="brand-name">Carolina Contador<span class="brand-dot">.</span></span>
     <span class="eyebrow">Propiedades</span>
@@ -12,4 +13,14 @@ import { site } from '../config/site';
     <a href="/propiedades/">Propiedades</a>
     <a class="nav-contact" href="/#contacto">Contacto <span aria-hidden="true">↗</span></a>
   </nav>
+</div>
 </header>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-site-header]');
+  if (header) {
+    const syncHeight = () => document.documentElement.style.setProperty('--header-height', header.getBoundingClientRect().height + 'px');
+    syncHeight();
+    new ResizeObserver(syncHeight).observe(header);
+  }
+</script>
