@@ -36,3 +36,14 @@ Verified live homepage, catalogue, property carousel/expanded viewer, sitemap, r
 colormural.cl was not modified.
 
 Hosted CMS: https://carolina-contador.sanity.studio/ . Sanity app ID eqeg3rrwpvpqfo4a1hz16ymg. Hosted workspace verified; Editor invitation sent. Studio deployments use pnpm studio:deploy.
+
+## Custom domain — 2026-10-22
+- Purchased primary domain: https://carolinacontador.cl (Dynadot registrar).
+- Cloudflare zone created on Free: 71dff45075ea8b3e2a9d5852cdd3b7e8.
+- Dynadot nameservers saved for carolinacontador.cl only: erin.ns.cloudflare.com and nolan.ns.cloudflare.com.
+- Initial domain was parked; Cloudflare scan found zero existing records.
+- Status: awaiting public DNS delegation/Cloudflare activation. Public NS lookup still returned NXDOMAIN at setup time.
+- Pages association is pending zone activation; no claim that the custom domain serves the website yet.
+- After activation: add carolinacontador.cl and www.carolinacontador.cl to the Carolina Pages project, verify HTTPS, redirect www and the production pages.dev host to the apex, set production SITE_URL=https://carolinacontador.cl, then rebuild and verify canonical/social/sitemap URLs.
+- SITE_INDEXABLE stays false pending real listing/content launch approval. Do not enable indexing simply because the domain resolves.
+- No settings for colormural.cl were changed.
