@@ -12,7 +12,7 @@ Only the Carolina project is in scope. Do not modify colormural.cl or its settin
 - SANITY_PROJECT_ID=vzzp5544
 - SANITY_DATASET=production
 - SITE_URL=https://carolinacontador.cl
-- SITE_INDEXABLE=false until real contact details and launch content are approved. Set true for launch.
+- Production SITE_INDEXABLE=true (authorized 2026-10-22). Keep local/example/preview environments noindex.
 
 SEO includes canonical URLs, social metadata, sitemap.xml, robots.txt and a real 404 page.
 Preview branches remain noindex. Noindex does not make the website private.
@@ -68,3 +68,11 @@ Hosted CMS: https://carolina-contador.sanity.studio/ . Sanity app ID eqeg3rrwpvp
 - Re-enabled only `Carolina primary domain` Bulk Redirect Rule after public HTTPS succeeded; pages.dev now forwards to the primary domain again.
 - Current catalogue is empty (the previous test listing is unpublished). Homepage contact spacing now also handles services immediately followed by contact when featured listings are absent.
 - Search indexing remains disabled. Next launch tasks: approve public copy, enable production indexing, verify Search Console and submit the sitemap; eligible Google Business Profile setup is separate.
+
+## Search indexing launch — 2026-10-22
+- User authorized enabling production indexing and Google Search Console setup.
+- Production SITE_INDEXABLE=true saved in Cloudflare. A new deployment is required for generated HTML to reflect the variable.
+- Production-mode build and SEO output checks pass, including noindex on comparison and 404 pages. Non-main branches retain the existing preview guard.
+- Google Search Console Domain property carolinacontador.cl verified under the existing jporregoc@gmail.com account with a DNS TXT record. Keep the Google verification record in DNS.
+- Search Console URL: https://search.google.com/search-console?resource_id=sc-domain%3Acarolinacontador.cl
+- Sitemap: https://carolinacontador.cl/sitemap.xml

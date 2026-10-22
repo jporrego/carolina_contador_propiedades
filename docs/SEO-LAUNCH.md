@@ -8,12 +8,12 @@
 - SITE_INDEXABLE defaults to false; non-main Cloudflare branches remain noindex. robots.txt permits crawling so crawlers can read noindex.
 - No invented credentials, service areas, reviews, addresses or ratings. Person markup is used until verified business details support LocalBusiness markup. Structured data does not guarantee rich results or rankings.
 
-## Required before indexing
+## Launch status and ongoing work
 1. Confirmed priority market: Santiago, especially Ñuñoa, La Reina, Providencia, Las Condes, Vitacura and Lo Barnechea. The homepage title and description target Santiago. The priority comuna list is retained here for planning; the introduction intentionally avoids listing areas. Confirm experience/credentials before adding them. Avoid duplicate city pages with swapped place names.
-2. Replace the current test listing (Casa 01 and its unrelated photograph) with genuine approved property content or unpublish it. Use descriptive titles, useful original descriptions, accurate availability, and property-specific photos/alt text. Never use an unrelated stock photo as evidence of a listed property.
-3. Primary domain is https://carolinacontador.cl. Apex/www are active in Pages, SITE_URL is updated, and www/production pages.dev redirects preserve paths and queries. Confirm normal browser access once stale DNS caches expire. colormural.cl is outside scope.
-4. Set SITE_INDEXABLE=true only for production after approval, rebuild and deploy. Keep preview environments false. Check actual response HTML: production indexable, comparison/404/preview noindex. Verify robots.txt and sitemap URLs use the final domain and unavailable URLs return HTTP 404.
-5. Verify the domain in Google Search Console, submit /sitemap.xml, inspect homepage/catalogue/a property URL and run Google's Rich Results Test for breadcrumbs. Check Schema.org validation separately for general listing markup (not a promise of a Google property rich result).
+2. The previous test listing is no longer shown; the catalogue is currently empty. Add approved real listings as they become available, with accurate availability, useful original descriptions, and property-specific photos/alt text.
+3. Primary domain is https://carolinacontador.cl. Apex/www are active in Pages, SITE_URL is updated, and www/production pages.dev redirects preserve paths and queries. Normal browser HTTPS and redirects have been verified. colormural.cl is outside scope.
+4. Public indexing authorized on 2026-10-22. Production SITE_INDEXABLE=true is saved in Cloudflare; this commit deploys the change. Preview environments remain noindex, as do the comparison and 404 pages. Production-mode build checks passed; verify actual response HTML after deployment.
+5. Domain ownership verified in Google Search Console on 2026-10-22 using a DNS TXT record. Keep that record in Cloudflare. Submit /sitemap.xml, inspect the homepage/catalogue and future real property URLs, and run Google's Rich Results Test for breadcrumbs. Check Schema.org validation separately for general listing markup (not a promise of a Google property rich result).
 6. Run PageSpeed Insights mobile on the final hosted pages; review LCP, CLS and INP. Real-user Core Web Vitals need traffic and time. Inspect Search Console indexing and performance after launch.
 7. Create/verify an eligible Google Business Profile using the real business identity and service area; don't invent a public office address. Keep phone/name consistent and request genuine client reviews.
 
