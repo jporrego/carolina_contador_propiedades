@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 
 const root = resolve('apps/web/dist');
 const mode = process.argv[2] || 'noindex';
-const origin = process.argv[3] || 'https://carolina-contador-propiedades.pages.dev';
+const origin = process.argv[3] || 'https://carolinacontador.cl';
 function files(dir) { return readdirSync(dir, { withFileTypes: true }).flatMap(e => e.isDirectory() ? files(join(dir, e.name)) : [join(dir, e.name)]); }
 const titles = new Set();
 let pages = 0;
