@@ -1,5 +1,16 @@
 ---
 import { contact } from '../config/contact';
+interface Props {
+  id?: string;
+  background?: string;
+  foreground?: string;
+  card?: boolean;
+}
+const { id = 'contacto', background, foreground, card = true } = Astro.props;
+const titleId = id === 'contacto' ? 'contact-title' : id + '-title';
+const paletteStyle = background && foreground
+  ? '--contact-background: ' + background + '; --contact-foreground: ' + foreground + ';'
+  : undefined;
 const message = encodeURIComponent('Hola Carolina, me gustaría conversar sobre la venta de mi propiedad.');
 const whatsappHref = !contact.isPlaceholder && contact.whatsappNumber
   ? 'https://wa.me/' + contact.whatsappNumber + '?text=' + message
@@ -8,15 +19,15 @@ const emailHref = !contact.isPlaceholder && contact.email
   ? 'mailto:' + contact.email + '?subject=' + encodeURIComponent('Quiero vender mi propiedad')
   : undefined;
 ---
-<section class="contact-band" id="contacto" aria-labelledby="contact-title">
+<section class="contact-band" id={id} aria-labelledby={titleId} style={paletteStyle}>
   <div class="contact container">
   <div class="contact-grid">
     <div>
       <p class="eyebrow section-eyebrow">El primer paso es conversar</p>
-      <h2 id="contact-title">Hablemos de<br />tu propiedad.</h2>
+      <h2 id={titleId}>Hablemos de<br />tu propiedad.</h2>
 
     </div>
-    <div class="contact-methods">
+    <div class:list={['contact-methods', { 'contact-methods-card': card }]}>
 
       <div class="contact-method">
         <h3>WhatsApp</h3>

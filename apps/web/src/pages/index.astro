@@ -2,7 +2,6 @@
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import OwnerServices from '../components/OwnerServices.astro';
-import SiteProcess from '../components/SiteProcess.astro';
 import SiteContact from '../components/SiteContact.astro';
 import FeaturedProperties from '../components/FeaturedProperties.astro';
 import interior from '../assets/interior.jpg';
@@ -48,7 +47,6 @@ const content = await getHomepage();
     </div>
   </section>
   <OwnerServices />
-  <SiteProcess />
   <FeaturedProperties />
   <SiteContact />
 </BaseLayout>

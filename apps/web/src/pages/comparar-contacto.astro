@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteContact from '../components/SiteContact.astro';
+const palettes = [
+  { id: 'naperon', name: 'Naperon + cacao', bg: '#D7A287', fg: '#342B26', note: 'Cálido, luminoso y natural.', reference: 'Naperon', source: 'https://www.farrow-ball.com/paint/naperon' },
+  { id: 'coral', name: 'Coral + tinta cálida', bg: '#E5A18C', fg: '#3C2C2B', note: 'Un acento alegre, con un toque rosado.', reference: 'Naperon y Rangwali', source: 'https://www.farrow-ball.com/paint/rangwali' },
+  { id: 'miel', name: 'Miel + café', bg: '#E8CF7C', fg: '#3C3422', note: 'Sol y energía, sin llegar al amarillo intenso.', reference: 'Babouche', source: 'https://www.farrow-ball.com/paint/babouche' },
+  { id: 'azul', name: 'Azul suave + marino', bg: '#A6BBDD', fg: '#24354B', note: 'Fresco y sereno, con un contraste más marcado.', reference: 'Kittiwake', source: 'https://www.farrow-ball.com/paint/kittiwake' },
+  { id: 'lila', name: 'Lila mineral + ciruela', bg: '#C0B2D8', fg: '#3E3151', note: 'Suave, moderno y un poco inesperado.', reference: 'Brassica', source: 'https://www.farrow-ball.com/paint/brassica' },
+  { id: 'frambuesa', name: 'Frambuesa + marfil', bg: '#A44F66', fg: '#FFF7F0', note: 'La opción más expresiva y envolvente.', reference: 'Rangwali', source: 'https://www.farrow-ball.com/paint/rangwali' },
+];
+---
+<BaseLayout title="Paletas de contacto | Carolina Contador" noindex>
+  <div class="palette-comparison container" data-view="columns">
+    <header class="comparison-heading">
+      <div>
+        <p class="eyebrow section-eyebrow">Carolina Contador · Exploración de color</p>
+        <h1>Un acento para Carolina.</h1>
+        <p class="comparison-description">El mismo contacto, seis combinaciones. Compáralas juntas o míralas al ancho de la página.</p>
+      </div>
+      <div class="view-controls" role="group" aria-label="Vista de las paletas">
+        <button type="button" data-view-option="columns" aria-pressed="true" aria-controls="palette-grid">En columnas</button>
+        <button type="button" data-view-option="full" aria-pressed="false" aria-controls="palette-grid">Ancho completo</button>
+      </div>
+    </header>
+    <div class="palette-grid" id="palette-grid">
+      {palettes.map((palette, index) => <div class="palette-panel">
+        <div class="palette-label">
+          <p><span class="palette-number">0{index + 1}</span> {palette.name}</p>
+          <span class="palette-hex">{palette.bg}</span>
+        </div>
+        <SiteContact id={'contacto-' + palette.id} background={palette.bg} foreground={palette.fg} card={false} />
+        <div class="palette-footnote"><p>{palette.note}</p><a href={palette.source} target="_blank" rel="noreferrer">Inspiración: {palette.reference} <span aria-hidden="true">↗</span></a></div>
+      </div>)}
+    </div>
+    <p class="comparison-note">Naperon usa el tono #D7A287 elegido. Las otras paletas son interpretaciones digitales de las referencias.</p>
+    <a class="text-link" href="/">Volver al sitio <span aria-hidden="true">↗</span></a>
+  </div>
+</BaseLayout>
+
+<script>
+  const comparison = document.querySelector<HTMLElement>('.palette-comparison');
+  const controls = comparison?.querySelectorAll<HTMLButtonElement>('[data-view-option]');
+  controls?.forEach((button) => button.addEventListener('click', () => {
+    if (!comparison) return;
+    comparison.dataset.view = button.dataset.viewOption;
+    controls.forEach((control) => control.setAttribute('aria-pressed', String(control === button)));
+  }));
+</script>
+
+<style>
+  .palette-comparison { padding-block: 3rem 5rem; }
+  .comparison-heading { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-bottom: 3rem; }
+  .comparison-heading h1 { font-size: clamp(2.25rem, 4.5vw, 4rem); line-height: 1.12; letter-spacing: -.045em; }
+  .comparison-description { color: var(--color-muted); font-size: 1rem; max-width: 42rem; margin: 1.25rem 0 0; }
+  .view-controls { display: flex; gap: .25rem; padding: .3rem; border: 1px solid var(--color-border); border-radius: 3rem; flex-shrink: 0; }
+  .view-controls button { cursor: pointer; background: transparent; color: var(--color-text); border: 0; border-radius: 3rem; padding: .7rem 1rem; font-size: .8rem; min-height: 44px; }
+  .view-controls button[aria-pressed="true"] { background: var(--color-text); color: var(--color-background); }
+  .palette-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3rem 2rem; }
+  .palette-panel { min-width: 0; }
+  .palette-label { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: .85rem; }
+  .palette-label p { margin: 0; font-size: .95rem; font-weight: 500; letter-spacing: -.02em; }
+  .palette-number { font-size: .7rem; color: var(--color-muted); margin-right: .65rem; }
+  .palette-hex { color: var(--color-muted); font-size: .75rem; }
+  .palette-panel :global(.contact-band) { margin: 0; border-radius: .75rem; }
+  .palette-panel :global(.contact) { width: auto; margin: 0; padding: clamp(1.75rem, 3vw, 3rem); }
+  .palette-panel :global(.contact-grid) { grid-template-columns: 1fr; gap: 2.5rem; }
+  .palette-panel :global(.contact h2) { font-size: clamp(2.25rem, 3.5vw, 3.6rem); }
+  .palette-panel :global(.contact .section-eyebrow) { margin-bottom: 1.5rem; font-size: .65rem; }
+  .palette-panel :global(.contact-methods) { max-width: none; }
+  .palette-panel :global(.contact-method) { padding-block: 1.25rem; }
+  .palette-panel :global(.contact-method:last-child) { padding-bottom: 0; }
+  .palette-panel :global(.contact-value) { font-size: clamp(1rem, 1.5vw, 1.35rem); }
+  .palette-footnote { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .4rem 1rem; margin-top: .85rem; color: var(--color-muted); font-size: .75rem; }
+  .palette-footnote p { margin: 0; }
+  .palette-footnote a { text-decoration: none; }
+  .palette-footnote a:hover { text-decoration: underline; }
+  .comparison-note { font-size: .8rem; color: var(--color-muted); margin: 3rem 0 0; }
+  [data-view="full"] .palette-grid { grid-template-columns: 1fr; }
+  [data-view="full"] .palette-panel :global(.contact) { padding: clamp(2.5rem, 6vw, 6rem); }
+  [data-view="full"] .palette-panel :global(.contact-grid) { grid-template-columns: 1.3fr 1fr; gap: 4rem; }
+  [data-view="full"] .palette-panel :global(.contact h2) { font-size: clamp(2.6rem, 4.7vw, 5rem); }
+  @media (max-width: 1000px) {
+    .comparison-heading { align-items: start; flex-direction: column; }
+  }
+  @media (max-width: 700px) {
+    .palette-comparison { padding-top: 2rem; }
+    .palette-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .palette-panel :global(.contact h2) { font-size: clamp(2rem, 8vw, 2.75rem); }
+    .palette-label { gap: .5rem; }
+    .palette-label p { font-size: .85rem; }
+    .palette-number { margin-right: .35rem; }
+    [data-view="full"] .palette-panel :global(.contact-grid) { grid-template-columns: 1fr; gap: 2.5rem; }
+    [data-view="full"] .palette-panel :global(.contact) { padding: 1.75rem; }
+    [data-view="full"] .palette-panel :global(.contact h2) { font-size: clamp(2rem, 8vw, 2.75rem); }
+  }
+</style>
