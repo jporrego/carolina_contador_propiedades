@@ -92,18 +92,19 @@ h3 { font-size: 1.5rem; line-height: 1.25; letter-spacing: -.025em; font-weight:
 .text-link { display: inline-flex; align-items: center; gap: 2rem; font-size: .85rem; padding-block: .7rem; margin-top: 1.5rem; text-decoration: none; border-bottom: 1px solid var(--color-border); }
 .text-link:hover { color: var(--color-accent); border-color: currentColor; }
 .section-description { max-width: 32rem; font-size: 1rem; line-height: 1.8; color: var(--color-muted); margin-top: 1.5rem; }
-.contact-band { background: #e9e7df; margin: 0 clamp(.75rem, 1.6vw, 2rem) 1.5rem; border-radius: .75rem; }
+.contact-band { background: #4c5747; color: #faf8f1; margin: 0 clamp(.75rem, 1.6vw, 2rem) 1.5rem; border-radius: .75rem; }
 .contact { padding-block: clamp(4rem, 7vw, 8rem); }
 .contact-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: clamp(3rem, 7vw, 8rem); align-items: center; }
 .contact h2 { font-size: clamp(2.6rem, 4.7vw, 5rem); }
-.contact .section-description { max-width: 31rem; }
+.contact .section-eyebrow { color: #dedfce; }
 .contact-methods { min-width: 0; }
-.contact-intro { font-size: 1rem; margin: 0 0 1.8rem; }
-.contact-method { border-top: 1px solid #c9c5b9; padding-block: 1.6rem; }
-.contact-method h3 { font-size: .7rem; color: var(--color-muted); margin: 0 0 .6rem; letter-spacing: .06em; }
+
+.contact-method { border-top: 1px solid #86907d; padding-block: 1.6rem; }
+.contact-method h3 { font-size: .7rem; color: #dedfce; margin: 0 0 .6rem; letter-spacing: .06em; }
 .contact-value { display: block; overflow-wrap: anywhere; font-size: clamp(1rem, 1.65vw, 1.5rem); margin: 0; letter-spacing: -.025em; text-decoration: none; }
 .contact-value span { float: right; }
-.contact-methods a:hover { color: var(--color-accent); }
+.contact-methods a:hover { color: #fff; text-decoration: underline; text-underline-offset: .3em; }
+.contact-band a:focus-visible { outline-color: #faf8f1; }
 .site-footer { display: flex; flex-wrap: wrap; gap: .75rem 2rem; justify-content: space-between; padding-block: 1.5rem 2rem; font-size: .75rem; color: var(--color-muted); }
 .site-footer a { text-decoration: none; }
 @media (max-width: 900px) {
@@ -155,7 +156,7 @@ h3 { font-size: 1.5rem; line-height: 1.25; letter-spacing: -.025em; font-weight:
   .process-list p { max-width: 34ch; }
   .contact { padding-block: 3.5rem; }
   .contact h2 { font-size: clamp(2.2rem, 9vw, 3.4rem); }
-  .contact-intro { margin-bottom: 1.25rem; }
+
   .contact-band .section-eyebrow { font-size: .63rem; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
