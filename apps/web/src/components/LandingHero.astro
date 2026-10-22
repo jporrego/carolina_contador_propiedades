@@ -1,0 +1,40 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import interior from '../assets/cocina-living-madera.webp';
+
+interface Props {
+  content: { heroLine1: string; heroLine2: string; heroDescription: string };
+  image?: ImageMetadata;
+  alt?: string;
+  heading?: 'h1' | 'h2';
+  headingId?: string;
+  contactHref?: string;
+  priority?: boolean;
+}
+
+const {
+  content,
+  image = interior,
+  alt = 'Cocina y living luminosos con vigas de madera y vista al mar.',
+  heading: Heading = 'h1',
+  headingId = 'hero-title',
+  contactHref = '#contacto',
+  priority = true,
+} = Astro.props;
+---
+<section class="hero" aria-labelledby={headingId}>
+  <Image class="hero-image" src={image} alt={alt}
+    widths={[640, 960, 1440, 2000]} sizes="100vw" width={2000}
+    loading={priority ? 'eager' : 'lazy'} fetchpriority={priority ? 'high' : undefined} format="webp" />
+  <div class="hero-content">
+    <Heading class="hero-title" id={headingId}>{content.heroLine1}<br />{content.heroLine2}</Heading>
+    <div class="hero-bottom">
+      <p>{content.heroDescription}</p>
+      <div class="hero-links">
+        <a class="button button-light" href={contactHref}>Vender mi propiedad <span class="button-arrow" aria-hidden="true">↗</span></a>
+        <a class="hero-secondary" href="/propiedades/">Ver propiedades <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </div>
+</section>

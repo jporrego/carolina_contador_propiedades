@@ -45,7 +45,7 @@ button, input, textarea, select { font: inherit; }
 .hero-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 56%; z-index: -2; }
 .hero-content { width: 100%; padding: clamp(2rem, 4.5vw, 5rem); }
 h1 { font-size: clamp(3.1rem, 6.5vw, 7.7rem); line-height: 1.02; letter-spacing: -.055em; font-weight: 400; margin: 0; }
-.hero h1 { max-width: 14ch; text-wrap: balance; }
+.hero-title { max-width: 14ch; text-wrap: balance; font-size: clamp(3.1rem, 6.5vw, 7.7rem); line-height: 1.02; letter-spacing: -.055em; font-weight: 400; margin: 0; }
 .hero-bottom { display: flex; justify-content: space-between; align-items: end; gap: 2rem; margin-top: 2.5rem; }
 .hero-bottom > p { max-width: 27rem; margin: 0; color: #f7f0e7; font-size: clamp(.95rem, 1.3vw, 1.2rem); }
 .hero-links { display: flex; align-items: center; gap: 1.75rem; flex-shrink: 0; }
@@ -126,7 +126,7 @@ h3 { font-size: 1.5rem; line-height: 1.25; letter-spacing: -.025em; font-weight:
   .nav-contact span { margin-left: .35rem; }
   .hero { min-height: 35rem; }
   .hero-content { padding: 1.5rem; }
-  .hero h1 { font-size: clamp(2.4rem, 10vw, 3.9rem); letter-spacing: -.055em; }
+  .hero-title { font-size: clamp(2.4rem, 10vw, 3.9rem); letter-spacing: -.055em; }
   .hero-bottom { margin-top: 1.5rem; gap: 1.5rem; }
   .hero-links { flex-wrap: wrap; gap: .5rem 1.5rem; }
   .hero-secondary { font-size: .8rem; }

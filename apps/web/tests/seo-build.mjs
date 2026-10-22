@@ -11,7 +11,7 @@ let pages = 0;
 for (const file of files(root).filter(p => p.endsWith('.html'))) {
   const html = readFileSync(file, 'utf8');
   const path = '/' + file.slice(root.length + 1).replaceAll('\\', '/').replace(/index\.html$/, '');
-  const excluded = path === '/404.html' || path.startsWith('/comparar-contacto/');
+  const excluded = path === '/404.html' || path.startsWith('/comparar-');
   const title = html.match(/<title>(.*?)<\/title>/s)?.[1];
   assert.ok(title && !titles.has(title), 'Unique title: ' + path); titles.add(title);
   assert.equal((html.match(/<h1(?:\s|>)/g) || []).length, 1, 'One H1: ' + path);
@@ -38,7 +38,7 @@ for (const file of files(root).filter(p => p.endsWith('.html'))) {
   pages++;
 }
 const sitemap = readFileSync(join(root, 'sitemap.xml'), 'utf8');
-assert.ok(!sitemap.includes('comparar-contacto') && !sitemap.includes('404'));
+assert.ok(!sitemap.includes('comparar-') && !sitemap.includes('404'));
 for (const m of sitemap.matchAll(/<loc>(.*?)<\/loc>/g)) {
   assert.ok(m[1].startsWith(origin + '/'));
   assert.ok(existsSync(join(root, new URL(m[1]).pathname, 'index.html')));

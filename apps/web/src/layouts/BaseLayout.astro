@@ -1,7 +1,7 @@
 ---
 import '@fontsource-variable/manrope';
 import { getImage } from 'astro:assets';
-import interior from '../assets/interior.jpg';
+import interior from '../assets/cocina-living-madera.webp';
 import { contact } from '../config/contact';
 import '../styles/global.css';
 import { site } from '../config/site';
@@ -17,7 +17,7 @@ interface Props {
   structuredData?: Record<string, unknown>[];
 }
 const { title = site.title, description = site.description, noindex = false,
-  image, imageAlt = 'Interior luminoso con materiales naturales y amplios ventanales',
+  image, imageAlt = 'Cocina y living luminosos con vigas de madera y vista al mar',
   pageType = 'WebPage', structuredData = [] } = Astro.props;
 const defaultImage = await getImage({ src: interior, width: 1200, height: 630, fit: 'cover', format: 'jpg' });
 const socialImage = new URL(image || defaultImage.src, Astro.site).href;

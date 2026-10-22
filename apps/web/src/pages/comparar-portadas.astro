@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LandingHero from '../components/LandingHero.astro';
+import { getHomepage } from '../data/homepage';
+import interior from '../assets/interior.jpg';
+import belAir from '../assets/landing-comparison/BelAirResidence.webp';
+import devlin from '../assets/landing-comparison/Devlin-MidRes.webp';
+import gomezPool from '../assets/landing-comparison/GomezRivero-MidRe2.webp';
+import gomezEntrance from '../assets/landing-comparison/GomezRivero-MidRes.webp';
+import pebbleExterior from '../assets/landing-comparison/PebbleBeach-MidRes.webp';
+import pebbleInterior from '../assets/cocina-living-madera.webp';
+
+const content = await getHomepage();
+const options = [
+  { id: 'actual', name: 'Interior original', shortName: 'Original', image: interior, alt: 'Living luminoso con materiales naturales y amplios ventanales.' },
+  { id: 'bel-air', name: 'Bel Air · Living y terraza', shortName: 'Bel Air', image: belAir, alt: 'Living abierto a una terraza soleada, con sillones de color mostaza y vista a las colinas.' },
+  { id: 'devlin', name: 'Devlin · Living y comedor', shortName: 'Devlin', image: devlin, alt: 'Living y comedor de tonos claros, con grandes ventanales abiertos al jardín.' },
+  { id: 'gomez-piscina', name: 'Gómez Rivero · Piscina', shortName: 'Piscina', image: gomezPool, alt: 'Casa contemporánea con piscina, jardín y terraza de madera iluminada al atardecer.' },
+  { id: 'gomez-acceso', name: 'Gómez Rivero · Acceso', shortName: 'Acceso', image: gomezEntrance, alt: 'Entrada de una casa de piedra clara rodeada de jardines, con montañas al fondo.' },
+  { id: 'pebble-exterior', name: 'Pebble Beach · Exterior', shortName: 'Exterior', image: pebbleExterior, alt: 'Casa de madera con terraza, escalera de piedra y un jardín frondoso.' },
+  { id: 'pebble-interior', name: 'Pebble Beach · Interior', shortName: 'Interior', image: pebbleInterior, alt: 'Cocina y living acogedores con vigas de madera y vista al mar.' },
+];
+---
+<BaseLayout title="Imágenes de portada | Carolina Contador" description="Siete imágenes para comparar el inicio del sitio de Carolina Contador." noindex>
+  <div class="hero-comparison" data-view="full">
+    <header class="comparison-heading container">
+      <div>
+        <p class="eyebrow section-eyebrow">Carolina Contador · Imágenes de portada</p>
+        <h1>Una imagen para dar la bienvenida.</h1>
+        <p class="comparison-description">Siete imágenes para el inicio, con el mismo texto y diseño.</p>
+      </div>
+      <div class="view-controls" role="group" aria-label="Vista de las portadas">
+        <button type="button" data-view-option="full" aria-pressed="true" aria-controls="landing-options">Ancho completo</button>
+        <button type="button" data-view-option="columns" aria-pressed="false" aria-controls="landing-options">En columnas</button>
+      </div>
+    </header>
+
+    <nav class="option-navigation container" aria-label="Ir a una portada">
+      {options.map((option, index) => <a href={'#' + option.id}><span>{String(index + 1).padStart(2, '0')}</span>{option.shortName}</a>)}
+    </nav>
+
+    <div class="landing-options" id="landing-options">
+      {options.map((option, index) => <article class="landing-option" id={option.id} aria-labelledby={'nombre-' + option.id}>
+        <header class="landing-label container">
+          <p id={'nombre-' + option.id}><span class="option-number">{String(index + 1).padStart(2, '0')}</span>{option.name}</p>
+          {option.id === 'pebble-interior' && <span class="current-badge">Portada actual</span>}
+        </header>
+        <LandingHero content={content} image={option.image} alt={option.alt} heading="h2" headingId={'titulo-' + option.id} contactHref="/#contacto" priority={index === 0} />
+      </article>)}
+    </div>
+
+    <div class="comparison-return container">
+      <a class="text-link" href="/">Volver al sitio <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  const comparison = document.querySelector<HTMLElement>('.hero-comparison');
+  const controls = comparison?.querySelectorAll<HTMLButtonElement>('[data-view-option]');
+  controls?.forEach((button) => button.addEventListener('click', () => {
+    if (!comparison) return;
+    comparison.dataset.view = button.dataset.viewOption;
+    controls.forEach((control) => control.setAttribute('aria-pressed', String(control === button)));
+  }));
+</script>
+
+<style>
+  .hero-comparison { padding-block: clamp(2rem, 4vw, 4rem) 2rem; }
+  .comparison-heading { display: flex; justify-content: space-between; align-items: end; gap: 2rem; }
+  .comparison-heading h1 { max-width: 16ch; font-size: clamp(2.5rem, 4.5vw, 4.5rem); line-height: 1.08; letter-spacing: -.045em; }
+  .comparison-description { margin: 1.25rem 0 0; color: var(--color-muted); max-width: 38rem; }
+  .view-controls { display: flex; gap: .25rem; padding: .3rem; border: 1px solid var(--color-border); border-radius: 3rem; flex-shrink: 0; }
+  .view-controls button { cursor: pointer; border: 0; border-radius: 3rem; background: transparent; color: var(--color-text); padding: .7rem 1rem; min-height: 44px; font-size: .875rem; }
+  .view-controls button[aria-pressed="true"] { background: var(--color-text); color: var(--color-background); }
+  .option-navigation { display: flex; flex-wrap: wrap; gap: .6rem; margin-block: 2rem 3rem; }
+  .option-navigation a { display: inline-flex; align-items: center; gap: .6rem; border: 1px solid var(--color-border); border-radius: 3rem; padding: .55rem .9rem; min-height: 44px; font-size: .875rem; text-decoration: none; background: #fffdf9; }
+  .option-navigation span { color: var(--color-muted); font-size: .75rem; }
+  .option-navigation a:hover { background: #f6e0d8; border-color: var(--color-accent); }
+  .landing-options { display: grid; gap: clamp(2.5rem, 5vw, 5rem); }
+  .landing-option { min-width: 0; scroll-margin-top: calc(var(--header-height) + 1.5rem); }
+  .landing-label { display: flex; justify-content: space-between; align-items: center; gap: 1rem; min-height: 2rem; }
+  .landing-label p { display: flex; align-items: baseline; gap: .9rem; margin: 0; font-size: 1rem; font-weight: 600; }
+  .option-number { color: var(--color-muted); font-size: .875rem; font-weight: 500; }
+  .current-badge { background: #f6e0d8; color: var(--color-on-accent); border-radius: 3rem; padding: .35rem .75rem; font-size: .8125rem; white-space: nowrap; }
+  .comparison-return { margin-top: 2rem; }
+  [data-view="columns"] .landing-options { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.5rem 1.5rem; margin-inline: clamp(.75rem, 1.6vw, 2rem); }
+  [data-view="columns"] .landing-label { width: auto; margin-inline: .25rem; }
+  [data-view="columns"] .landing-option :global(.hero) { margin-inline: 0; min-height: clamp(30rem, 48vw, 40rem); }
+  [data-view="columns"] .landing-option :global(.hero-content) { padding: clamp(1.5rem, 3vw, 3rem); }
+  [data-view="columns"] .landing-option :global(.hero-title) { font-size: clamp(2.4rem, 4vw, 4.5rem); }
+  [data-view="columns"] .landing-option :global(.hero-bottom) { flex-direction: column; align-items: start; margin-top: 1.5rem; gap: 1.5rem; }
+  [data-view="columns"] .landing-option :global(.hero-links) { flex-wrap: wrap; gap: .75rem 1.25rem; }
+  @media (max-width: 1000px) {
+    .comparison-heading { align-items: start; flex-direction: column; }
+  }
+  @media (max-width: 700px) {
+    .option-navigation { margin-bottom: 2rem; gap: .5rem; }
+    .option-navigation a { padding-inline: .75rem; }
+    .landing-label p { font-size: .875rem; gap: .6rem; }
+    .current-badge { font-size: .75rem; padding-inline: .6rem; }
+    [data-view="columns"] .landing-options { grid-template-columns: 1fr; }
+    [data-view="columns"] .landing-option :global(.hero) { min-height: 35rem; }
+    [data-view="columns"] .landing-option :global(.hero-title) { font-size: clamp(2.4rem, 10vw, 3.9rem); }
+  }
+</style>
