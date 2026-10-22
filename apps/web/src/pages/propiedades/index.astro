@@ -3,6 +3,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PropertyCard from '../../components/PropertyCard.astro';
 import { getProperties } from '../../data/properties';
 const properties = await getProperties();
+const list = { '@type': 'ItemList', name: 'Propiedades en venta y arriendo', numberOfItems: properties.length,
+  itemListElement: properties.map((property, index) => ({ '@type': 'ListItem', position: index + 1,
+    name: property.title, url: new URL('/propiedades/' + property.slug + '/', Astro.site).href })) };
+const breadcrumb = { '@type': 'BreadcrumbList', itemListElement: [
+  { '@type': 'ListItem', position: 1, name: 'Inicio', item: new URL('/', Astro.site).href },
+  { '@type': 'ListItem', position: 2, name: 'Propiedades', item: new URL('/propiedades/', Astro.site).href },
+] };
 const filters = [
   { value: 'all', label: 'Todas' },
   { value: 'Casa', label: 'Casas' },
@@ -11,7 +18,7 @@ const filters = [
   { value: 'Oficina', label: 'Oficinas' },
 ];
 ---
-<BaseLayout title="Propiedades | Carolina Contador Cortes" description="Explora las propiedades en venta y arriendo de Carolina Contador Cortes.">
+<BaseLayout pageType="CollectionPage" structuredData={[list, breadcrumb]} title="Propiedades en venta y arriendo | Carolina Contador Cortes" description="Explora las propiedades en venta y arriendo de Carolina Contador Cortes.">
   <section class="catalog container" aria-labelledby="catalog-title" data-property-catalog>
     <h1 id="catalog-title">Propiedades</h1>
     {properties.length > 0 && <div class="catalog-controls" data-catalog-controls hidden>

@@ -1,7 +1,7 @@
 export const site = {
   name: 'Carolina Contador Cortes',
-  title: 'Carolina Contador Cortes | Propiedades',
+  title: 'Carolina Contador Cortes | Asesoría inmobiliaria',
   description:
-    'Conoce a Carolina Contador Cortes y encuentra acompañamiento para la venta de tu propiedad.',
+    'Vende tu propiedad con Carolina Contador Cortes. Asesoría inmobiliaria personal, difusión, coordinación de visitas y seguimiento de propuestas. Conversemos.',
   language: 'es',
 };

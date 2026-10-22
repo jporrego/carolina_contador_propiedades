@@ -1,5 +1,8 @@
 ---
 import '@fontsource-variable/manrope';
+import { getImage } from 'astro:assets';
+import interior from '../assets/interior.jpg';
+import { contact } from '../config/contact';
 import '../styles/global.css';
 import { site } from '../config/site';
 import SiteHeader from '../components/SiteHeader.astro';
@@ -8,10 +11,34 @@ interface Props {
   title?: string;
   description?: string;
   noindex?: boolean;
+  image?: string;
+  imageAlt?: string;
+  pageType?: string;
+  structuredData?: Record<string, unknown>[];
 }
-const { title = site.title, description = site.description, noindex = false } = Astro.props;
+const { title = site.title, description = site.description, noindex = false,
+  image, imageAlt = 'Interior luminoso con materiales naturales y amplios ventanales',
+  pageType = 'WebPage', structuredData = [] } = Astro.props;
+const defaultImage = await getImage({ src: interior, width: 1200, height: 630, fit: 'cover', format: 'jpg' });
+const socialImage = new URL(image || defaultImage.src, Astro.site).href;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const preventIndexing = noindex || import.meta.env.SITE_INDEXABLE !== 'true' || (import.meta.env.CF_PAGES_BRANCH && import.meta.env.CF_PAGES_BRANCH !== 'main');
+const rootUrl = new URL('/', Astro.site).href;
+const graph = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'Person', '@id': rootUrl + '#carolina', name: site.name,
+      url: rootUrl, jobTitle: 'Asesora inmobiliaria', telephone: '+' + contact.whatsappNumber, email: contact.email },
+    { '@type': 'WebSite', '@id': rootUrl + '#website', url: rootUrl, name: site.name,
+      inLanguage: 'es-CL', publisher: { '@id': rootUrl + '#carolina' } },
+    { '@type': pageType, '@id': canonical.href + '#webpage', url: canonical.href,
+      name: title, description, inLanguage: 'es-CL', isPartOf: { '@id': rootUrl + '#website' },
+      primaryImageOfPage: { '@type': 'ImageObject', url: socialImage } },
+    ...structuredData,
+  ],
+};
+// CMS text must never be able to close this script element.
+const jsonLd = JSON.stringify(graph).replaceAll('<', '\\u003c');
 ---
 <!doctype html>
 <html lang={site.language}>
@@ -19,7 +46,7 @@ const preventIndexing = noindex || import.meta.env.SITE_INDEXABLE !== 'true' || 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    {preventIndexing && <meta name="robots" content="noindex, follow" />}
+    <meta name="robots" content={preventIndexing ? "noindex, follow" : "index, follow, max-image-preview:large"} />
     <meta name="theme-color" content="#f6f3ee" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
@@ -30,7 +57,16 @@ const preventIndexing = noindex || import.meta.env.SITE_INDEXABLE !== 'true' || 
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={imageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+    <meta name="twitter:image:alt" content={imageAlt} />
+    {!noindex && <script type="application/ld+json" set:html={jsonLd} />}
   </head>
   <body>
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
