@@ -9,7 +9,7 @@
 - No invented credentials, service areas, reviews, addresses or ratings. Person markup is used until verified business details support LocalBusiness markup. Structured data does not guarantee rich results or rankings.
 
 ## Required before indexing
-1. Confirm Carolina's service cities/comunas and add them naturally to the homepage copy and metadata. Confirm experience/credentials before adding them. Avoid duplicate city pages with swapped place names.
+1. Confirmed priority market: Santiago, especially Ñuñoa, La Reina, Providencia, Las Condes, Vitacura and Lo Barnechea. Homepage copy and metadata now reflect this. Confirm experience/credentials before adding them. Avoid duplicate city pages with swapped place names.
 2. Replace the current test listing (Casa 01 and its unrelated photograph) with genuine approved property content or unpublish it. Use descriptive titles, useful original descriptions, accurate availability, and property-specific photos/alt text. Never use an unrelated stock photo as evidence of a listed property.
 3. Choose the primary domain and www preference. Attach it to this Cloudflare Pages project, set SITE_URL to its HTTPS origin, and redirect the alternate host and pages.dev host to the primary with path/query preservation. Do not touch colormural.cl.
 4. Set SITE_INDEXABLE=true only for production after approval, rebuild and deploy. Keep preview environments false. Check actual response HTML: production indexable, comparison/404/preview noindex. Verify robots.txt and sitemap URLs use the final domain and unavailable URLs return HTTP 404.

@@ -1,7 +1,7 @@
 export const site = {
   name: 'Carolina Contador Cortes',
-  title: 'Carolina Contador Cortes | Asesoría inmobiliaria',
+  title: 'Carolina Contador Cortes | Asesoría inmobiliaria en Santiago',
   description:
-    'Vende tu propiedad con Carolina Contador Cortes. Asesoría inmobiliaria personal, difusión, coordinación de visitas y seguimiento de propuestas. Conversemos.',
+    'Vende tu propiedad en Santiago con Carolina Contador Cortes. Asesoría inmobiliaria personal: presentación, visitas y seguimiento de propuestas.',
   language: 'es',
 };
