@@ -3,10 +3,12 @@ import PropertyCard from './PropertyCard.astro';
 import { getProperties } from '../data/properties';
 const featured = (await getProperties()).filter((property) => property.featured && property.status === 'available').slice(0, 2);
 ---
-{featured.length > 0 && <section class="featured container" aria-labelledby="featured-title">
+{featured.length > 0 && <section class="featured-band" aria-labelledby="featured-title">
+  <div class="featured container">
   <div class="featured-heading">
-    <div><h2 id="featured-title">Propiedades destacadas</h2></div>
+    <div><p class="eyebrow section-eyebrow">Encuentra tu próximo espacio</p><h2 id="featured-title">Propiedades destacadas</h2></div>
     <a class="text-link" href="/propiedades/">Ver todas <span aria-hidden="true">↗</span></a>
   </div>
   <div class="property-grid">{featured.map((property) => <PropertyCard property={property} />)}</div>
+  </div>
 </section>}

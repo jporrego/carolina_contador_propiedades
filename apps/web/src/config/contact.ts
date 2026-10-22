@@ -1,7 +1,6 @@
 export const contact = {
-  // Keep sample details non-interactive. Set isPlaceholder to false only with approved real details.
-  isPlaceholder: true,
-  phoneLabel: '+56 9 XXXX XXXX',
-  whatsappNumber: '',
-  email: 'carolina@example.com',
+  isPlaceholder: false,
+  phoneLabel: '+56 9 8597 9192',
+  whatsappNumber: '56985979192',
+  email: 'carolina.c@signaturegi.cl',
 };

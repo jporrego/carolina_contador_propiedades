@@ -2,29 +2,28 @@
 import { Image } from 'astro:assets';
 import serviceInterior from '../assets/apartment.jpg';
 const services = [
-  { title: 'Presentación', text: 'Fotografías y descripciones que muestran lo mejor de tu propiedad.' },
-  { title: 'Difusión', text: 'Publicación, atención de consultas y coordinación de visitas.' },
-  { title: 'Acompañamiento', text: 'Seguimiento de propuestas y apoyo hasta el cierre de la venta.' },
+  { title: 'Una buena primera impresión', text: 'Fotografías y descripciones que destacan los espacios, la luz y lo que hace especial a tu propiedad.', tag: 'Presentación', icon: 'M4 7h4l2-3h4l2 3h4v13H4Z M16 13a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z' },
+  { title: 'Llegar a las personas indicadas', text: 'Difusión, atención de consultas y visitas coordinadas con cuidado, para aprovechar cada oportunidad.', tag: 'Difusión', icon: 'M3 10h5l12-6v16L8 14H3Z M6 14l2 7h4l-2-6' },
+  { title: 'Acompañarte hasta el cierre', text: 'Seguimiento de propuestas y una comunicación clara para que puedas decidir con tranquilidad.', tag: 'Acompañamiento', icon: 'M4 4h16v13H10l-6 4Z M8 10l3 3 5-6' },
 ];
 ---
 <section class="services-band" id="propietarios" aria-labelledby="services-title">
   <div class="services container">
-    <figure class="service-image">
-      <Image src={serviceInterior} alt="Espacio interior de una vivienda."
-        widths={[480, 800, 1200]} sizes="(max-width: 900px) 90vw, 45vw"
-        width={1200} format="webp" loading="lazy" />
-    </figure>
-    <div class="service-content">
-      <h2 id="services-title">Servicios para<br />propietarios</h2>
-      <div class="service-list">
-        {services.map((service) => <article class="service-item">
-          <h3>{service.title}</h3>
-          <p>{service.text}</p>
-          <svg class="service-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true" focusable="false">
-            <path d="M5 12h14M13 6l6 6-6 6" />
-          </svg>
-        </article>)}
-      </div>
+    <div class="service-intro">
+      <p class="eyebrow section-eyebrow">Servicios para propietarios</p>
+      <h2 id="services-title">El cuidado que<br />tu propiedad merece.</h2>
+      <p class="section-description">Una gestión pensada para presentar bien tu propiedad y acompañarte en cada decisión.</p>
+      <figure class="service-image">
+        <Image src={serviceInterior} alt="Interior luminoso de una vivienda con tonos cálidos."
+          widths={[480, 800, 1200]} sizes="(max-width: 900px) 90vw, 42vw"
+          width={1200} format="webp" loading="lazy" />
+      </figure>
+    </div>
+    <div class="service-list">
+      {services.map((service) => <article class="service-item">
+        <span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d={service.icon} /></svg></span>
+        <div><p class="eyebrow">{service.tag}</p><h3>{service.title}</h3><p class="service-description">{service.text}</p></div>
+      </article>)}
     </div>
   </div>
 </section>

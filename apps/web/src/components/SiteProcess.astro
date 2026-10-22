@@ -1,38 +1,21 @@
 ---
 const steps = [
-  {
-    title: 'Conversemos', text: 'Tu propiedad, tus tiempos y tus objetivos.',
-    icon: 'M14 15h36a5 5 0 0 1 5 5v20a5 5 0 0 1-5 5H30L17 54v-9h-3a5 5 0 0 1-5-5V20a5 5 0 0 1 5-5Z M20 26h24 M20 34h16',
-  },
-  {
-    title: 'Preparemos', text: 'Definimos el precio y la presentación.',
-    icon: 'M8 30 32 10l24 20 M15 26v28h34V26 M26 54V37h12v17 M25 26h14',
-  },
-  {
-    title: 'Publiquemos', text: 'Gestionamos las consultas y las visitas.',
-    icon: 'M12 27h12l25-12v34L24 37H12Z M18 37l4 16h9l-4-15 M49 27l7-4 M49 37l7 4 M7 27v10',
-  },
-  {
-    title: 'Avancemos', text: 'Revisamos propuestas y coordinamos el cierre.',
-    icon: 'M35 29a13 13 0 1 0-4 4L53 55l7-7-6-6-5 5-5-5 5-5-14-8Z M19 18h.01',
-  },
+  { title: 'Conversemos', text: 'Escucho lo que buscas y conocemos tu propiedad, tus tiempos y tus objetivos.' },
+  { title: 'Preparemos', text: 'Definimos el precio y cuidamos cada detalle de la presentación.' },
+  { title: 'Publiquemos', text: 'Damos a conocer tu propiedad y organizamos las consultas y visitas.' },
+  { title: 'Avancemos', text: 'Revisamos las propuestas y coordinamos juntos los pasos hacia el cierre.' },
 ];
 ---
 <section class="process-band" id="proceso" aria-labelledby="process-title">
   <div class="process container">
     <div class="process-heading">
-      <h2 id="process-title">Cómo<br />trabajamos</h2>
-      <div class="process-heading-line" aria-hidden="true"></div>
+      <div><p class="eyebrow section-eyebrow">Cómo trabajamos</p><h2 id="process-title">Un camino claro.<br /><span>Paso a paso, contigo.</span></h2></div>
+      <p class="section-description">Vender una propiedad es una decisión importante. La idea es que sepas qué viene, en cada etapa.</p>
     </div>
     <ol class="process-list">
       {steps.map((step, index) => <li>
         <span class="step-number" aria-hidden="true">0{index + 1}</span>
         <div class="step-copy"><h3>{step.title}</h3><p>{step.text}</p></div>
-        <span class="step-icon" aria-hidden="true">
-          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" focusable="false">
-            <path d={step.icon} />
-          </svg>
-        </span>
       </li>)}
     </ol>
   </div>
