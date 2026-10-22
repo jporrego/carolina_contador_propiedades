@@ -76,3 +76,8 @@ Hosted CMS: https://carolina-contador.sanity.studio/ . Sanity app ID eqeg3rrwpvp
 - Google Search Console Domain property carolinacontador.cl verified under the existing jporregoc@gmail.com account with a DNS TXT record. Keep the Google verification record in DNS.
 - Search Console URL: https://search.google.com/search-console?resource_id=sc-domain%3Acarolinacontador.cl
 - Sitemap: https://carolinacontador.cl/sitemap.xml
+## Indexing launch verified — 2026-10-22
+- Live homepage and catalogue return 200 and index/follow metadata. Comparison stays noindex; missing URL returns 404 and noindex.
+- Latest deployment preview confirmed excluded via X-Robots-Tag: noindex.
+- Google Search Console sitemap submission processed with Success. Homepage was discovered through the sitemap; indexing request accepted into the priority crawl queue. It is not yet indexed at verification time. Further crawling/indexing is controlled by Google.
+- No Search Console, DNS, hosting or redirect settings for colormural.cl were changed.
