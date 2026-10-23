@@ -36,7 +36,23 @@ test('published data maps prices, ordered photographs and focal points', async (
 test('empty data stays empty instead of exposing old fixtures', async () => {
   assert.deepEqual(await load([]).getProperties(), []);
 });
+test('photos without descriptions publish with a property-based fallback', async () => {
+  const descriptions = [undefined, null, '', '  ', '  Living con jardín  '];
+  const [result] = await load([{
+    ...property,
+    photos: descriptions.map((alt) => ({...property.photos[0], alt})),
+  }]).getProperties();
+  assert.deepEqual(result.photos.map((photo) => photo.alt), [
+    'Casa con jardín — fotografía 1',
+    'Casa con jardín — fotografía 2',
+    'Casa con jardín — fotografía 3',
+    'Casa con jardín — fotografía 4',
+    'Living con jardín',
+  ]);
+});
 test('duplicate slugs or incomplete published photos fail loudly', async () => {
   await assert.rejects(load([property, property]).getProperties(), /duplicate/);
   await assert.rejects(load([{...property, photos: []}]).getProperties(), /photo/);
+  await assert.rejects(load([{...property, photos: [{url: null}]}]).getProperties(), /photo/);
+  await assert.rejects(load([{...property, photos: [{url: 'https://other.example/photo.jpg'}]}]).getProperties(), /photo/);
 });

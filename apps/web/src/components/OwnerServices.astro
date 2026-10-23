@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 
-import serviceInterior from '../assets/apartment.jpg';
+import serviceInterior from '../assets/living-comedor-ventanales-jardin.webp';
 const services = [
   { title: 'Presento tu propiedad', text: 'Cuido las fotografías y la descripción para mostrar sus espacios, sus atributos y la información que un comprador necesita.', icon: 'M4 7h4l2-3h4l2 3h4v13H4Z M16 13a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z' },
   { title: 'Gestiono consultas y visitas', text: 'Me encargo de la difusión, respondo las consultas y coordino las visitas contigo. Tú no tienes que estar pendiente de cada mensaje.', icon: 'M3 10h5l12-6v16L8 14H3Z M6 14l2 7h4l-2-6' },
@@ -15,7 +15,7 @@ const services = [
       <h2 id="services-title">Tu propiedad merece<br />una buena gestión.</h2>
       <p class="section-description">Desde la publicación hasta las propuestas, me encargo de los detalles y te mantengo al tanto.</p>
       <figure class="service-image">
-        <Image src={serviceInterior} alt="Interior luminoso de una vivienda con tonos cálidos."
+        <Image src={serviceInterior} alt="Living y comedor de tonos claros, con grandes ventanales abiertos al jardín."
           widths={[480, 800, 1200]} sizes="(max-width: 900px) 90vw, 42vw"
           width={1200} format="webp" loading="lazy" />
       </figure>

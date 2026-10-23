@@ -94,9 +94,9 @@ export const property = defineType({
         name: 'propertyPhoto', type: 'image', title: 'Fotografía', options: { hotspot: true },
         validation: (Rule) => Rule.required().assetRequired(),
         fields: [
-          defineField({ name: 'alt', title: 'Descripción de la imagen', type: 'string',
-            description: 'Describe lo que se ve para personas que utilizan lectores de pantalla.',
-            validation: (Rule) => Rule.required().max(200) }),
+          defineField({ name: 'alt', title: 'Descripción de la imagen (opcional)', type: 'string',
+            description: 'Describe lo que se ve para personas que utilizan lectores de pantalla. Si la dejas vacía, se usará el título de la propiedad.',
+            validation: (Rule) => Rule.max(200) }),
         ],
       })],
       validation: (Rule) => Rule.required().min(1).max(30),

@@ -14,7 +14,7 @@ No API token is needed in the browser. Never put private API tokens in SANITY_ST
 
 - Open Todas las propiedades and create a Propiedad.
 - Fill the required fields and generate the URL from the title.
-- Add photographs with image descriptions; drag to reorder. The first photo is the cover.
+- Add photographs and drag to reorder. The first photo is the cover. Image descriptions are optional; the website uses the property title and photo number when no description is supplied.
 - Sanity saves drafts automatically. Publish when ready; unpublish to withdraw published content.
 - Disponibilidad is commercial status, independent of draft/published state.
 - Use the filtered lists for available, reserved, sold, rented and archived properties.

@@ -9,7 +9,7 @@ export interface Property {
   description: string; features: string[]; photos: PropertyPhoto[];
 }
 interface RawProperty extends Omit<Property, 'photos'> {
-  photos: Array<{ url: string | null; alt: string; hotspot?: {x: number; y: number} }>;
+  photos: Array<{ url: string | null; alt?: string | null; hotspot?: {x: number; y: number} }>;
 }
 
 export async function getProperties(): Promise<Property[]> {
@@ -32,9 +32,9 @@ export async function getProperties(): Promise<Property[]> {
         !['UF', 'CLP'].includes(row.currency) || !['sale', 'rent'].includes(row.operation)) {
       throw new Error('Incomplete published property: ' + row.slug);
     }
-    const photos = (row.photos || []).map((photo) => {
-      if (!photo.url || !photo.alt || !photo.url.startsWith('https://cdn.sanity.io/images/')) {
-        throw new Error('Missing photo or description on property: ' + row.slug);
+    const photos = (row.photos || []).map((photo, index) => {
+      if (!photo.url || !photo.url.startsWith('https://cdn.sanity.io/images/')) {
+        throw new Error('Missing or invalid photo on property: ' + row.slug);
       }
       const url = new URL(photo.url);
       url.searchParams.set('auto', 'format');
@@ -44,7 +44,8 @@ export async function getProperties(): Promise<Property[]> {
         url.searchParams.set('fp-x', String(photo.hotspot.x));
         url.searchParams.set('fp-y', String(photo.hotspot.y));
       }
-      return { url: url.toString(), alt: photo.alt };
+      const alt = photo.alt?.trim() || row.title + ' — fotografía ' + (index + 1);
+      return { url: url.toString(), alt };
     });
     if (!photos.length) throw new Error('Published property needs at least one photo: ' + row.slug);
     const names: Record<string, string> = { house: 'Casa', apartment: 'Departamento', land: 'Terreno', office: 'Oficina' };
